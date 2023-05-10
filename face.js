@@ -15,6 +15,14 @@ var NUM_SLIDERS = 3;
 
 const stroke_color = [95, 52, 8];
 
+const LightBeige_const = [186,169,149];
+  const DarkBeige_const = [122,111,98];
+  const MustyBrown_const = [46,42,37];
+  const FadeBrown_const = [59,53,47];
+  const SoftBrown_const = [51,46,41];
+
+
+
 // example of a global function
 // given a segment, this returns the average point [x, y]
 function segment_average(segment) {
@@ -42,6 +50,19 @@ function Face() {
   this.lipColour = [136, 68, 68]
   this.eyebrowColour = [119, 85, 17]
 
+  //my code
+  let stroke_color = [95, 52, 8];
+
+  let LightBeige_const = [186,169,149];
+    let DarkBeige_const = [122,111,98];
+    let MustyBrown_const = [46,42,37];
+    let FadeBrown_const = [59,53,47];
+    let SoftBrown_const = [51,46,41];
+
+    let faceX = width/73.84
+    let faceY = height/26.31
+
+
   /*
    * Draw the face with position lists that include:
    *    chin, right_eye, left_eye, right_eyebrow, left_eyebrow
@@ -49,6 +70,22 @@ function Face() {
    */  
   this.draw = function(positions) {
     console.log()
+
+
+
+    ///MY CODE
+
+    fill(this.DarkBeige_const)
+    
+    strokeWeight(.4);
+    stroke(this.MustyBrown_const);
+    fill(this.LightBeige_const);
+    
+    ellipse(0,0, ,this.faceX,this.faceY) // face
+
+    arc(-1,-3.1, 14, 13,2.566 ,5); // head top
+
+    fill(this.MustyBrown_const);
     // head
     ellipseMode(CENTER);
     stroke(stroke_color);
