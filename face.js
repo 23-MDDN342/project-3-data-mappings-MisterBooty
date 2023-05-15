@@ -13,13 +13,7 @@ var NUM_SLIDERS = 3;
 // here's some examples for colors used
 
 
-const stroke_color = [95, 52, 8];
 
-const LightBeige_const = [186,169,149];
-  const DarkBeige_const = [122,111,98];
-  const MustyBrown_const = [46,42,37];
-  const FadeBrown_const = [59,53,47];
-  const SoftBrown_const = [51,46,41];
 
 
 
@@ -51,16 +45,28 @@ function Face() {
   this.eyebrowColour = [119, 85, 17]
 
   //my code
-  let stroke_color = [95, 52, 8];
+  const stroke_color = [95, 52, 8];
 
-  let LightBeige_const = [186,169,149];
-    let DarkBeige_const = [122,111,98];
-    let MustyBrown_const = [46,42,37];
-    let FadeBrown_const = [59,53,47];
-    let SoftBrown_const = [51,46,41];
+  const LightBeige_const = [186,169,149];
+  const DarkBeige_const = [122,111,98];
+  const MustyBrown_const = [46,42,37];
+  const FadeBrown_const = [59,53,47];
+  const SoftBrown_const = [51,46,41];
 
-    let faceX = width/73.84
-    let faceY = height/26.31
+  const DarkAqua_const = [45,60,58];
+  const DirtyAqua_const = [131,201,195];
+
+  
+  // let stroke_color = [95, 52, 8];
+
+  // let LightBeige_const = [186,169,149];
+  //   let DarkBeige_const = [122,111,98];
+  //   let MustyBrown_const = [46,42,37];
+  //   let FadeBrown_const = [59,53,47];
+  //   let SoftBrown_const = [51,46,41];
+
+    this.faceX = width/73.84// 73.84
+    this.faceY = height/26.31// 26.31
 
 
   /*
@@ -70,86 +76,96 @@ function Face() {
    */  
   this.draw = function(positions) {
     console.log()
+    
+    ///MY CODE starts here
+    push()
+    scale(0.3)
+
+
+    
 
 
 
-    ///MY CODE
-
-    fill(this.DarkBeige_const)
+    angleMode(DEGREES);
     
     strokeWeight(.4);
-    stroke(this.MustyBrown_const);
-    fill(this.LightBeige_const);
+    stroke(DarkAqua_const);
+    fill(DirtyAqua_const);
     
-    ellipse(0,0, ,this.faceX,this.faceY) // face
+    ellipse(0,0,this.faceX,this.faceY) // face
 
-    arc(-1,-3.1, 14, 13,2.566 ,5); // head top
+    arc(-1,-3.1, 14, 13,143,-5); // head top
 
-    fill(this.MustyBrown_const);
-    // head
-    ellipseMode(CENTER);
-    stroke(stroke_color);
-    fill(this.mainColour);
-    ellipse(segment_average(positions.chin)[0], 0, 3, 4);
-    noStroke();
+    /* Perhaps yu could make the main ellipse of the head have another ellipse without a stroke in front. 
+    This is turn should get rid of the arc, and thats where you can replace it with a circle.
+    once you do this you could then be able to change the facialangles easier.*/
+
+ 
+    // // head
+    // ellipseMode(CENTER);
+    // stroke(stroke_color);
+    // fill(this.mainColour);
+    // ellipse(segment_average(positions.chin)[0], 0, 3, 4);
+    // noStroke();
 
 
-    // mouth
-    fill(this.detailColour);
-    ellipse(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.25 * this.mouth_size);
+    // // mouth
+    // fill(this.detailColour);
+    // ellipse(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.25 * this.mouth_size);
 
-    // eyebrows
-    fill( this.eyebrowColour);
-    stroke( this.eyebrowColour);
-    strokeWeight(0.08);
-    this.draw_segment(positions.left_eyebrow);
-    this.draw_segment(positions.right_eyebrow);
+    // // eyebrows
+    // fill( this.eyebrowColour);
+    // stroke( this.eyebrowColour);
+    // strokeWeight(0.08);
+    // this.draw_segment(positions.left_eyebrow);
+    // this.draw_segment(positions.right_eyebrow);
 
-    // draw the chin segment using points
-    fill(this.chinColour);
-    stroke(this.chinColour);
-    this.draw_segment(positions.chin);
+    // // draw the chin segment using points
+    // fill(this.chinColour);
+    // stroke(this.chinColour);
+    // this.draw_segment(positions.chin);
 
-    fill(100, 0, 100);
-    stroke(100, 0, 100);
-    this.draw_segment(positions.nose_bridge);
-    this.draw_segment(positions.nose_tip);
+    // fill(100, 0, 100);
+    // stroke(100, 0, 100);
+    // this.draw_segment(positions.nose_bridge);
+    // this.draw_segment(positions.nose_tip);
 
-    strokeWeight(0.03);
+    // strokeWeight(0.03);
 
-    fill(this.lipColour);
-    stroke(this.lipColour);
-    this.draw_segment(positions.top_lip);
-    this.draw_segment(positions.bottom_lip);
+    // fill(this.lipColour);
+    // stroke(this.lipColour);
+    // this.draw_segment(positions.top_lip);
+    // this.draw_segment(positions.bottom_lip);
 
-    let left_eye_pos = segment_average(positions.left_eye);
-    let right_eye_pos = segment_average(positions.right_eye);
+    // let left_eye_pos = segment_average(positions.left_eye);
+    // let right_eye_pos = segment_average(positions.right_eye);
 
-    // eyes
-    noStroke();
-    let curEyeShift = 0.04 * this.eye_shift;
-    if(this.num_eyes == 2) {
-      fill(this.detailColour);
-      ellipse(left_eye_pos[0], left_eye_pos[1], 0.5, 0.33);
-      ellipse(right_eye_pos[0], right_eye_pos[1], 0.5, 0.33);
+    // // eyes
+    // noStroke();
+    // let curEyeShift = 0.04 * this.eye_shift;
+    // if(this.num_eyes == 2) {
+    //   fill(this.detailColour);
+    //   ellipse(left_eye_pos[0], left_eye_pos[1], 0.5, 0.33);
+    //   ellipse(right_eye_pos[0], right_eye_pos[1], 0.5, 0.33);
 
-      // fill(this.mainColour);
-      // ellipse(left_eye_pos[0] + curEyeShift, left_eye_pos[1], 0.18);
-      // ellipse(right_eye_pos[0] + curEyeShift, right_eye_pos[1], 0.18);
-    }
-    else {
-      let eyePosX = (left_eye_pos[0] + right_eye_pos[0]) / 2;
-      let eyePosY = (left_eye_pos[1] + right_eye_pos[1]) / 2;
+    //   // fill(this.mainColour);
+    //   // ellipse(left_eye_pos[0] + curEyeShift, left_eye_pos[1], 0.18);
+    //   // ellipse(right_eye_pos[0] + curEyeShift, right_eye_pos[1], 0.18);
+    // }
+    // else {
+    //   let eyePosX = (left_eye_pos[0] + right_eye_pos[0]) / 2;
+    //   let eyePosY = (left_eye_pos[1] + right_eye_pos[1]) / 2;
 
-      fill(this.detailColour);
-      ellipse(eyePosX, eyePosY, 0.45, 0.27);
+    //   fill(this.detailColour);
+    //   ellipse(eyePosX, eyePosY, 0.45, 0.27);
 
-      fill(this.mainColour);
-      ellipse(eyePosX - 0.1 + curEyeShift, eyePosY, 0.18);
-    }
+    //   fill(this.mainColour);
+    //   ellipse(eyePosX - 0.1 + curEyeShift, eyePosY, 0.18);
+    // }
    // fill(0)
    //ellipse(0,0, 0.5,0.5) center point
    //rect(-2,-2,4.5,4) sizing debug 
+   pop()
   }
 
   // example of a function *inside* the face object.
