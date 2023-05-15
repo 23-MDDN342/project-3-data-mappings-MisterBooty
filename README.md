@@ -2,6 +2,8 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=11103453&assignment_repo_type=AssignmentRepo)
 ## 2023 MDDN342 Assignment 3: Data Mappings
 
-REPLACE ALL TEXT IN THIS FILE
+16/05
 
-This README should be used to document your design.
+Impleneted my facial base of my previous porject into this set of code. Got the vairbless i need working as well as colour.
+
+Next step is to create the eyes outh and nose, then futher on down the line I need to work on how create a system in which the face changes the directions it faces depending on said photo.
