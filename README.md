@@ -7,3 +7,8 @@
 Impleneted my facial base of my previous porject into this set of code. Got the vairbless i need working as well as colour.
 
 Next step is to create the eyes outh and nose, then futher on down the line I need to work on how create a system in which the face changes the directions it faces depending on said photo.
+
+
+18/05
+
+I have successfully implemented my code into my design!! The arcs were very different at first and were all jumbled. This is because I needed to change my angle mode to radians instead of degrees. Unfortunately, my face seems to be rotating too much to be mapped probably as shown above. I need to figure this out first, then I can work on implementing positions for the eyes, mouth, nose,ears and extras.

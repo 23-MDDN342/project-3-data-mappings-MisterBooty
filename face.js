@@ -47,6 +47,9 @@ function Face() {
   //MINE
   this.eyeType = 2
   this.mouthType = 2
+  this.earType = 2
+  this.noseType = 2
+  this.extraType = 2
 
   //my code
   const stroke_color = [95, 52, 8];
@@ -88,6 +91,9 @@ function Face() {
 
     angleMode(DEGREES);
     
+
+    /*FACE SETUP***/
+
     strokeWeight(.4);
     stroke(DarkAqua_const);
     fill(DirtyAqua_const);
@@ -97,6 +103,11 @@ function Face() {
     ellipse(-1,-3.1,this.faceX+1,this.faceY/1.4) // head top, varies on facial direction
     noStroke();
     ellipse(0,0,this.faceX-.25,this.faceY-1) // face colour to hide the head top outline.
+    pop();
+
+    push();
+    angleMode(RADIANS);
+    scale(0.3)
 
     /*EYES*********************/
 
@@ -264,6 +275,7 @@ else if (this.mouthType == 3){ //shocked, sad or scared mouth
 
   
 }
+
 else if (this.mouthType == 4){ // buck tooth mouth
 stroke(DarkAqua_const);
 fill(DarkAqua_const);
@@ -282,11 +294,237 @@ noFill();
 arc(0.5,5, 5,5,3.2,4.3) // top cheek
 arc(0.75,6,5,5,1.5,2.4) //  bottom cheek
 
+}
+/*NOSE**********/
 
-
-
+if (this.noseType == 1){ // basic ball nose
+  stroke(DarkAqua_const);
+  fill(DirtyAqua_const)
+  strokeWeight(.4);
+  
+  arc(2.5,1,3,3,4,3) // round ball nose
 
 }
+
+else if (this.noseType == 2){ // pinocchio nose
+  stroke(DarkAqua_const);
+  fill(DirtyAqua_const);
+  strokeWeight(.4);
+
+  rect(1,0.5,8.5,1.6,5,5,5) // nose bridge/ main
+  line(7,0.3,8,-0.5) // stem 1 base
+  line(7.3,0.1,7,-0.5) // stem one branch
+  ellipse(8.5,-0.5,1,0.75) // stem 1 leaf
+  line(5.5,1.5,7,3) // stem 2 base
+  line(6.8,2.7,7.4,2.6) // stem 2 branch
+  noStroke()
+  rect(0.5,0.7,2,1.2,5,5,5) // gets rid of the rect join 
+ 
+}
+
+else if (this.noseType == 3){ // plastic surgery nose
+stroke(DarkAqua_const);
+  noFill()
+  strokeWeight(.4);
+
+  arc(3.3,-2,3,5,1.75,3.3) // nose bridge curve
+  fill(DirtyAqua_const)
+  arc(3.2,1.45,2.2,2.2,4.5,2,OPEN) // nose knob
+  noFill()
+  arc(2.2,2.5,1,1.2,4,6) // nose under curve
+}
+
+else if (this.noseType == 4){ // pimple nose
+  stroke(DarkAqua_const);
+  fill(DirtyAqua_const)
+  strokeWeight(.4);
+  
+  arc(2.5,0,3,5,4.5,2.3,OPEN) // nose birdge and knob
+  arc(1.1,1.5,2,2,1,4.5) // nostril
+  arc(3.9,0,1.2,1.2,4,8,OPEN) // pimple
+  ellipse(2.5,-1,0.1) // blackhead top
+  ellipse(2.1,1.2,0.1) // blackhead bottom
+
+}
+
+
+/*EARS******/
+
+if (this.earType == 1){ // ear with earring
+  stroke(DarkAqua_const);
+    fill(DirtyAqua_const);
+    strokeWeight(.4);
+    
+    arc(-6.6, 0, 3, 5, 1,5.5,OPEN); // ear 
+    arc(-6.6, 0, 1.5, 3, 3,5,OPEN); // ear line
+
+    noFill()
+
+    arc(-6.8, 3, 1.5, 2.5, 5,4,OPEN); // earrings hoopmain
+   
+    fill(LightBeige_const);
+    ellipse(-6.8,4.75,0.75) // earring jewel
+   
+}
+
+else if (this.earType == 4){ // headphones
+    stroke(DarkAqua_const);
+    fill(DirtyAqua_const);
+    strokeWeight(.4);
+    ellipse(-5.75,0.5,6) // headphone ear cushion
+    fill(DarkAqua_const);
+    ellipse(-6.5,0.5,6) // headphone shell
+    fill(DirtyAqua_const);
+    rect(-8,-3.5,3,1,2,2,2,2) // headphone band connection
+
+    noFill();
+    strokeWeight(1.5)
+    arc(-4,-4.5,5,9,3,4.75) //headphpne band
+    strokeWeight(.4)
+
+    // these lines are to make it seem that the headphone band is going around the head
+    stroke(DirtyAqua_const); 
+    arc(-3,-4.9,5,8,3,4.75);
+    strokeWeight(.5)
+   line(-4,-8.5,-3,-8.5)
+    
+}
+
+else if (this.earType == 3){ // big hearing ear
+    fill(DirtyAqua_const);
+  
+    noStroke()
+    arc(-7, 0, 4, 6, 0.1,0,OPEN); // ear fill to hide face lines
+
+    stroke(DarkAqua_const);
+    strokeWeight(.4);
+    arc(-6.5, 3, 2.5, 3, 6.2,3.5,OPEN); // ear lobe
+    arc(-7, 0, 4, 6, 1.7,6,OPEN); //outer  ear top
+
+    noFill()
+    arc(-7, 0, 2.5, 4.5, 2.3,6.5,OPEN); // ear big line
+     arc(-6.5, 0.5, 1.5, 1.5, 2,6,OPEN); // small inside ear lobe curve
+    arc(-6.75, 1.5, 2, 1.5, 6,3,OPEN); // ear smaller line
+}
+
+else if (this.earType == 2){
+   stroke(DarkAqua_const);
+    fill(DirtyAqua_const);
+    strokeWeight(.4);
+    
+    push();
+    fill(DirtyAqua_const);
+    rotate(-0.7)
+    arc(-5,-5,3.2,5.8,8,7.5,OPEN) // ear 
+    pop();
+
+    fill(DirtyAqua_const)
+    arc(-8,-2,2.6,3.5,2.75,4.75) // ear point
+   
+    arc(-6.5,-3.6,3,3.5,1.3,3.2) //ear dip to mask curve
+
+    push();
+    noFill()
+    rotate(-0.7)
+    arc(-5.2,-5,1.5,3.5,1.7,4.7,) // ear inside line 1
+    arc(-4.5,-6,1.5,3.5,1.7,4.25,) // ear inside line 2
+    pop();
+
+
+/*EXTRA************/
+
+}
+
+if (this.extraType == 2){ // devil horns
+  stroke(DarkAqua_const);
+  
+   strokeWeight(.7);
+
+   fill(DarkAqua_const)
+   rect(-8.2,-6,2.5,2,3,3,3,3) // left circulir base and chip
+   arc(-7,-8.5,5,9,1.5,3.2 ,OPEN) //left horn outline bottom
+    noFill()
+   arc(-7,-9,5,6,1.5,3.2) //left horn outline top 
+
+
+   fill(DarkAqua_const)
+   arc(4,-8.5,5,9,6.2,1.11 ,OPEN) //right  horn outline bottom
+    noFill()
+   arc(4,-9,5,6,6.2,1.15) //right  horn outline top 
+   arc(4,-8.4,5,6,6.2,1.11) //right  horn outline fill
+}
+
+else if (this.extraType == 1){ // holes
+   stroke(DarkAqua_const);
+   fill(DirtyAqua_const);
+   strokeWeight(.4);
+
+   /**BIG HOLES */
+
+   ellipse(1.5,-7,1.5,3) // hole 1 outline
+   fill(DarkAqua_const);
+   ellipse(1.25,-7,.5,2) // hole 1 dark
+
+   fill(DirtyAqua_const);
+   ellipse(-3.25,5,1,2.5) // hole 2 outline
+   fill(DarkAqua_const);
+   ellipse(-3.5,5,0.25,1.5) // hole 2 dark
+
+   fill(DirtyAqua_const);
+   ellipse(-4,-7,.75,2) // hole 3 outline
+   fill(DarkAqua_const);
+   ellipse(-4.2,-7,0.1,1) // hole 3 dark
+
+   fill(DirtyAqua_const);
+   ellipse(1.2,-2,.75,2) // hole 4 outline
+   fill(DarkAqua_const);
+   ellipse(1,-2,0.1,1) // hole 4 dark
+
+   fill(DirtyAqua_const);
+   ellipse(-4,-2,1.25,2.5) // hole 5 outline
+   fill(DarkAqua_const);
+   ellipse(-4.2,-2,0.25,1.5) // hole 5 dark
+
+   /**SMALL HOLES */
+
+   ellipse(2,8.2,0.2,0.5) // bottom right under mouth
+   ellipse(5.5,2.7,0.2,0.5) // middle right above mouth
+   ellipse(-1,1,0.2,0.5) // middle middle underneath eye
+   ellipse(-1,-7,0.2,0.5) // middle top above eyebrow
+   ellipse(4,-6.5,0.2,0.5) // top right above eyebrow
+   ellipse(5.5,-2,0.2,0.5) // middle right below eye
+   ellipse(-5,3.5,0.2,0.5) // middle left below ear
+   ellipse(-5,-4.5,0.2,0.5) // middle left below ear
+}
+
+else if (this.extraType == 4){ // scars
+stroke(DarkAqua_const);
+   noFill()
+   strokeWeight(.3);
+   arc(-2,-7,3,3.5,3,4.5) //scar 1 main line
+   line(-3,-7.1,-4,-7.1) // bottom scar 1 short line
+    line(-2.75,-7.6,-3.9,-7.8) // scar 1 middle line
+   line(-2.4,-8.1,-3.4,-8.5) // scar 1 top line
+
+   arc(1.5,-5.75, 5,5,4.75,6) // scar 2 main line
+   line(3,-6.75,4,-7) // scar 2 bottm line
+   line(2.25,-7.5,3,-8) // scar 2 top line
+   ellipse(3,-7.25,0.01) // scar 2 middle dot
+  
+}
+
+else if (this.extraType == 3){ // arrow in head
+stroke(DarkAqua_const);
+fill(DirtyAqua_const);
+strokeWeight(.7)
+   line(1.5,-7,8,-7) // arrow stick
+   strokeWeight(.4)
+   quad(7,-7,8,-8,9,-8,8,-7); // arrow feath top       
+   quad(7,-7,8,-6,9,-6,8,-7); // arrow feather bottom
+   noFill();
+   strokeWeight(.4)
+   arc(0.4,-6.75,2,2,5,0.5) // head indenttom 
+}  
 
 
     /* Perhaps yu could make the main ellipse of the head have another ellipse without a stroke in front. 
@@ -358,11 +596,12 @@ arc(0.75,6,5,5,1.5,2.4) //  bottom cheek
    // fill(0)
    //ellipse(0,0, 0.5,0.5) center point
    //rect(-2,-2,4.5,4) sizing debug 
-   pop()
+   pop();
   }
 
   // example of a function *inside* the face object.
   // this draws a segment, and do_loop will connect the ends if true
+  angleMode(DEGREES);
   this.draw_segment = function(segment, do_loop) {
     for(let i=0; i<segment.length; i++) {
         let px = segment[i][0];
@@ -385,9 +624,9 @@ arc(0.75,6,5,5,1.5,2.4) //  bottom cheek
   this.setProperties = function(settings) {
     this.eyeType = int(map(settings[0], 0, 100, 1, 4));
     this.mouthType = int(map(settings[1], 0, 100, 1, 4));
-    // this.noseType = map(settings[2], 0, 100, 0.5, 8);
-    // this.earType = int(map(settings[0], 0, 100, 1, 2));
-    // this.extraType = int(map(settings[0], 0, 100, 1, 2));
+     this.noseType = int(map(settings[2], 0, 100, 1,4));
+    this.earType = int(map(settings[3], 0, 100, 1, 4));
+    this.extraType = int(map(settings[4], 0, 100, 1, 4));
   }
 
   /* get internal properties as list of numbers 0-100 */
@@ -395,8 +634,8 @@ arc(0.75,6,5,5,1.5,2.4) //  bottom cheek
     let settings = new Array(3);
     settings[0] = map(this.eyeType, 1, 2, 0, 100);
     settings[1] = map(this.mouthType, 1, 2, 0, 100);
-    // settings[2] = map(this.noseType, 0.5, 8, 0, 100);
-    // settings[3] = map(this.earType, 1, 2, 0, 100);
+     settings[2] = map(this.noseType, 1, 2, 0, 100);
+    settings[3] = map(this.earType, 1, 2, 0, 100);
     // settings[4] = map(this.extraType, 1, 2, 0, 100);
     return settings;
   }
