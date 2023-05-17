@@ -7,7 +7,7 @@
 var DEBUG_MODE = true;
 
 // this can be used to set the number of sliders to show
-var NUM_SLIDERS = 3;
+var NUM_SLIDERS = 5;
 
 // other variables can be in here too
 // here's some examples for colors used
@@ -43,6 +43,10 @@ function Face() {
   this.chinColour = [153, 153, 51]
   this.lipColour = [136, 68, 68]
   this.eyebrowColour = [119, 85, 17]
+
+  //MINE
+  this.eyeType = 2
+  this.mouthType = 2
 
   //my code
   const stroke_color = [95, 52, 8];
@@ -82,19 +86,208 @@ function Face() {
     scale(0.3)
 
 
-    
-
-
-
     angleMode(DEGREES);
     
     strokeWeight(.4);
     stroke(DarkAqua_const);
     fill(DirtyAqua_const);
     
-    ellipse(0,0,this.faceX,this.faceY) // face
+    ellipse(0,0,this.faceX,this.faceY) // main big old face circle
+    
+    ellipse(-1,-3.1,this.faceX+1,this.faceY/1.4) // head top, varies on facial direction
+    noStroke();
+    ellipse(0,0,this.faceX-.25,this.faceY-1) // face colour to hide the head top outline.
 
-    arc(-1,-3.1, 14, 13,143,-5); // head top
+    /*EYES*********************/
+
+    if (this.eyeType == 1){ // surpised/ eyebrows raised expression
+      strokeWeight(1);
+      stroke(DarkAqua_const);
+      fill(DarkAqua_const);
+      
+      ellipse(-1,-2, 1.5, 4) // left eye
+    
+      ellipse(3.5,-2, 1.5, 4) // right eye
+
+      noStroke();
+
+      fill(DirtyAqua_const); 
+      triangle(-3.5,-3, -3.5,-.5,-0.5,-1.5,) // left eye indent
+      triangle(1,-3, 1,-0.5,4,-1.5,) // right eye indent
+
+      strokeWeight(1); /// thicker for brows
+      stroke(DarkAqua_const);
+      
+      noFill(); 
+      arc(-1,-4.5,5,3,3.3,5) //left eyebrow raised
+      arc(3.5,-4.5,5,3,4.5,6.2) //left eyebrow raised
+    
+  }
+
+  else if (this.eyeType == 4){ // suspicious / confused eyes
+      strokeWeight(1);
+      stroke(DarkAqua_const);
+      fill(DarkAqua_const);
+      ellipse(-1,-2, 1.5, 4) // left eye
+    
+      ellipse(3.5,-2, 1.5, 4) // right eye
+
+      noStroke();
+
+      fill(DirtyAqua_const); 
+      triangle(-3.5,-3, -3.5,-.5,-0.5,-1.5,) // left eye indent
+      triangle(1,-3, 1,-0.5,4,-1.5,) // right eye indent
+      
+      stroke(DarkAqua_const);
+      fill(DirtyAqua_const); 
+      strokeWeight(.4);
+
+      arc(-1,1,3,3,3.85,5.5) //bottom left eye beam line
+      arc(3.5,1,3,3,3.85,5.5)//bottom right eye beam line
+
+      strokeWeight(1); /// thicker for brows
+
+      arc(3.5,-5,5,2,7,2.5) // right eyebrow concerned
+      noFill(); 
+      arc(-1,-4.5,5,3,3.3,5.4) //left eyebrow raised
+     
+  }
+
+  else if (this.eyeType == 3){ // sad, scared and tired eyes
+      /**Eyes */
+      strokeWeight(1);
+      stroke(DarkAqua_const);
+      fill(DarkAqua_const);
+      ellipse(-1,-2, 1.5, 4) // left eye
+    
+      ellipse(3.5,-2, 1.5, 4) // right eye
+
+      noStroke();
+
+      fill(DirtyAqua_const); 
+      triangle(-3.5,-3, -3.5,-.5,-0.5,-1.5,) // left eye indent
+      triangle(1,-3, 1,-0.5,4,-1.5,) // right eye indent
+      /**Eyebrows/skin */
+      noFill()
+      strokeWeight(.4)
+      stroke(DarkAqua_const);
+      arc(-1.1,-0.2,3,3,1,3) //bottom left eye tired line
+      arc(-1.4,0.5,3,3,1.5,2.5) //smaller bottom left eye tired line
+
+      arc(3.6,-0.2,3,3,0,2)//bottom right eye tired line
+      arc(4.1,0.5,3,3,0.5,1.5)//smaller bottom right eye tired line
+
+      strokeWeight(1); /// thicker for brows
+      fill(DirtyAqua_const); // fill for cover the eye bpart
+
+      arc(4.5,-4.7,3.5,3.5,7.7,3.3) // right eyebrow sad
+      arc(-2,-4.7,3.5,3.5,6.1,1.8) // left eyebrow sad
+      noFill(); 
+  }
+
+else if (this.eyeType == 2){ // dead eyes
+ 
+   /**Eyes */
+   strokeWeight(1);
+   stroke(DarkAqua_const);
+   fill(DarkAqua_const);
+  
+   line(-2,-3.5,0,-0.5) // left x line 1
+   line(0,-3.5,-2,-0.5) // left x line 2
+
+   line(2.5,-3.5,4.5,-0.5) // right x line 1
+   line(4.5,-3.5,2.5,-0.5) // right x line 2
+
+   noFill(); 
+   arc(-1,-4,10,3,3.6,5) //left eyebrow raised
+   arc(3.5,-4,10,3,4.5,5.75) //left eyebrow raised
+   
+}
+
+/*********MOUTH**************/
+if (this.mouthType == 1){ // happy chapy mouth
+
+  stroke(DarkAqua_const);
+  noFill();
+  strokeWeight(.4);
+
+  arc(1.5, 3, 6, 9, 0, PI, PI + QUARTER_PI); // mouth bottom
+  arc(1.5, 3, 6, 1, 0, PI, PI + QUARTER_PI); // mouth top
+
+  fill(DarkAqua_const);
+
+  arc(1.5, 4, 5.6, 5, 0, PI, PI + QUARTER_PI); // mouth darkness
+  noFill();
+  arc(-2.7, 2, 3, 3, 0, HALF_PI); // left cheek outline
+}
+
+else if (this.mouthType == 2){ // whistle mouth
+
+  stroke(DarkAqua_const);
+  noFill();
+  strokeWeight(.4);
+
+  arc(-2,5,5,5.3,1.7,4.4 ) // left cheek line
+  arc(-1,5,4,4.3,5.5,7) // right cheek line
+
+  fill(DirtyAqua_const); // fill to show lips
+  arc(4,5.2,4,4.3,4,2) // lip line 
+ 
+  fill(DarkAqua_const);
+  ellipse(4.2,5.2, 2,2.5) // mouth
+
+  ellipse(8,5.2, 1.1,1) // music note circle
+  noFill();
+  strokeWeight(.5); // up thickness for lines
+  line(8.5,3,8.5,5.3) // straight line music note
+  arc(9,2.2,2,2,7.7,2) //music note flick
+
+}
+
+else if (this.mouthType == 3){ //shocked, sad or scared mouth
+
+  stroke(DarkAqua_const);
+  fill(DarkAqua_const);
+  strokeWeight(.4);
+
+  fill(DirtyAqua_const);
+  arc(3.5,6.5,4,4,5.75,1.85) // right cheek
+  arc(-0.5,6.5,4,4,1.2,3.3) // left cheek
+
+  fill(DarkAqua_const);
+
+  ellipse(1.5,5.5,5.5,3) //mouth dark
+
+  arc(0,6,3,3,0.5,5) // left mouth dark
+
+  arc(3,6,3,3,5,3) // right mouth dark
+
+  
+}
+else if (this.mouthType == 4){ // buck tooth mouth
+stroke(DarkAqua_const);
+fill(DarkAqua_const);
+strokeWeight(.4);
+
+ellipse(1.5,5.5,4,4) //mouth dark
+
+fill(DirtyAqua_const);
+ellipse(1.5,6.65,3,1.5) //tongue
+line(1,6,1.5,6.5) // tongue dent
+
+ellipse(2,4.5,1.5,1.75) //tooth right
+ellipse(1,4.5,1.5,1.75) //tooth left
+
+noFill();
+arc(0.5,5, 5,5,3.2,4.3) // top cheek
+arc(0.75,6,5,5,1.5,2.4) //  bottom cheek
+
+
+
+
+
+}
+
 
     /* Perhaps yu could make the main ellipse of the head have another ellipse without a stroke in front. 
     This is turn should get rid of the arc, and thats where you can replace it with a circle.
@@ -190,17 +383,21 @@ function Face() {
 
   /* set internal properties based on list numbers 0-100 */
   this.setProperties = function(settings) {
-    this.num_eyes = int(map(settings[0], 0, 100, 1, 2));
-    this.eye_shift = map(settings[1], 0, 100, -2, 2);
-    this.mouth_size = map(settings[2], 0, 100, 0.5, 8);
+    this.eyeType = int(map(settings[0], 0, 100, 1, 4));
+    this.mouthType = int(map(settings[1], 0, 100, 1, 4));
+    // this.noseType = map(settings[2], 0, 100, 0.5, 8);
+    // this.earType = int(map(settings[0], 0, 100, 1, 2));
+    // this.extraType = int(map(settings[0], 0, 100, 1, 2));
   }
 
   /* get internal properties as list of numbers 0-100 */
   this.getProperties = function() {
     let settings = new Array(3);
-    settings[0] = map(this.num_eyes, 1, 2, 0, 100);
-    settings[1] = map(this.eye_shift, -2, 2, 0, 100);
-    settings[2] = map(this.mouth_size, 0.5, 8, 0, 100);
+    settings[0] = map(this.eyeType, 1, 2, 0, 100);
+    settings[1] = map(this.mouthType, 1, 2, 0, 100);
+    // settings[2] = map(this.noseType, 0.5, 8, 0, 100);
+    // settings[3] = map(this.earType, 1, 2, 0, 100);
+    // settings[4] = map(this.extraType, 1, 2, 0, 100);
     return settings;
   }
 }
