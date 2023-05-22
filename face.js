@@ -82,19 +82,20 @@ function Face() {
    *    bottom_lip, top_lip, nose_tip, nose_bridge, 
    */  
   this.draw = function(positions) {
+  
     console.log()
     
     ///MY CODE starts here
-    push()
+     push()
     scale(0.3)
 
 
-    angleMode(DEGREES);
+    
     
 
     /*FACE SETUP***/
 
-    strokeWeight(.4);
+    strokeWeight(.75);
     stroke(DarkAqua_const);
     fill(DirtyAqua_const);
     
@@ -102,10 +103,10 @@ function Face() {
     
     ellipse(-1,-3.1,this.faceX+1,this.faceY/1.4) // head top, varies on facial direction
     noStroke();
-    ellipse(0,0,this.faceX-.25,this.faceY-1) // face colour to hide the head top outline.
-    pop();
+    ellipse(0,0,this.faceX-.5,this.faceY-1.5) // face colour to hide the head top outline. size x=-.25, y = -1
+     pop();
 
-    push();
+    
     angleMode(RADIANS);
     scale(0.3)
 
@@ -422,7 +423,7 @@ else if (this.earType == 2){
     arc(-8,-2,2.6,3.5,2.75,4.75) // ear point
    
     arc(-6.5,-3.6,3,3.5,1.3,3.2) //ear dip to mask curve
-
+  pop()
     push();
     noFill()
     rotate(-0.7)
@@ -527,9 +528,6 @@ strokeWeight(.7)
 }  
 
 
-    /* Perhaps yu could make the main ellipse of the head have another ellipse without a stroke in front. 
-    This is turn should get rid of the arc, and thats where you can replace it with a circle.
-    once you do this you could then be able to change the facialangles easier.*/
 
  
     // // head
@@ -596,12 +594,12 @@ strokeWeight(.7)
    // fill(0)
    //ellipse(0,0, 0.5,0.5) center point
    //rect(-2,-2,4.5,4) sizing debug 
-   pop();
+   angleMode(DEGREES);
   }
 
   // example of a function *inside* the face object.
   // this draws a segment, and do_loop will connect the ends if true
-  angleMode(DEGREES);
+
   this.draw_segment = function(segment, do_loop) {
     for(let i=0; i<segment.length; i++) {
         let px = segment[i][0];
