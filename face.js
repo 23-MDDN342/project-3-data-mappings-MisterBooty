@@ -89,28 +89,25 @@ function Face() {
   this.averageRightEyeBrow = segment_average(positions.right_eyebrow)
   this.averageLeftEyeBrow = segment_average(positions.left_eyebrow)
 
+  this.averageTopLip = segment_average(positions.top_lip)
+  this.averageBottomLip = segment_average(positions.bottom_lip)
+  this.averageChin = segment_average(positions.chin)
+
   /* plug it in like 
 
   Ellipse(this.averageRightEye[0], this.averageRightEye[1], 1, 1) */
     
-  this.ReyeX = positions.right_eye[0][0] //plug this into positions for eye x and y right
+  this.ReyeX = positions.right_eye[0][0] 
   this.ReyeY = positions.right_eye[0][1]
 
-  this.LeyeX = positions.left_eye[0][0] //plug this into positions for eye x and y left
+  this.LeyeX = positions.left_eye[0][0] 
   this.LeyeY = positions.left_eye[0][1]
-    
-  fill(255)
-  ellipse(this.averageRightEye[0],this.averageRightEye[1],4,4)
-  
-    console.log()
-    
+
+  this.cheekTopLeft = positions.top_lip[7][0]
+
     ///MY CODE starts here
      push()
     scale(0.3)
-
-
-    
-    
 
     /*FACE SETUP***/
 
@@ -131,7 +128,7 @@ function Face() {
 
     /*EYES*********************/
 
-    if (this.eyeType == 1){ // surpised/ eyebrows raised expression
+    if (this.eyeType == 1){ // surpised/ eyebrows raised expression HAS POSTIONS
 
       strokeWeight(1);
       stroke(DarkAqua_const);
@@ -139,89 +136,138 @@ function Face() {
 
       //LEFT EYE
       
-      push(); // push and pop to contain translate in order to use it twice
-      translate(this.averageLeftEye[1],this.averageLeftEye[0]) // the arrays have to be the other way aroun with translate
-      ellipse(-1,-2, 1.5, 4) // left eye
+       // push and pop to contain translate in order to use it twice
+      //translate(this.averageLeftEye[1],this.averageLeftEye[0]) // the arrays have to be the other way aroun with translate
+      ellipse(this.averageLeftEye[0]-.5,this.averageLeftEye[1], 1.5, 4) // left eye -1,-2
       
       noStroke();
       fill(DirtyAqua_const); 
-      triangle(-3.5,-3, -3.5,-.5,-0.5,-1.5,) // left eye indent
-      pop();
+      triangle(this.averageLeftEye[0]-3.5,this.averageLeftEye[1]+2.5,this.averageLeftEye[0]-3.5,this.averageLeftEye[1]-2,this.averageLeftEye[0],this.averageLeftEye[1],) // left eye indent
+      // remove the maths for the middle point of the trianlge. -3 to +3 for bottom point.
 
       //RIGHT EYE
-      push(); // push and pop to contain translate in order to use it twice
-      translate(this.averageRightEye[1],this.averageRightEye[0]) // the arrays have to be the other way aroun with translate
+       // push and pop to contain translate in order to use it twice
+     // translate(this.averageRightEye[1],this.averageRightEye[0]) // the arrays have to be the other way aroun with translate
      // you might have to do the maths instead as this will be too hard to figure out with translate.
       stroke(DarkAqua_const);
       fill(DarkAqua_const);
-      ellipse(3.5,-2, 1.5, 4) // right eye
+      ellipse(this.averageRightEye[0]+2,this.averageRightEye[1], 1.5, 4) // right eye 3.5, -2
 
       noStroke();
       fill(DirtyAqua_const); 
-      triangle(1,-3, 1,-0.5,4,-1.5,) // right eye indent
-      pop();
-
-
+      triangle(this.averageRightEye[0],this.averageRightEye[1]-1.5, this.averageRightEye[0],this.averageRightEye[1]+1.5,this.averageRightEye[0]+2.5,this.averageRightEye[1]) // right eye indent
+      
       //EYEBROWS
       strokeWeight(1); /// thicker for brows
       stroke(DarkAqua_const);
+
+      //LEFT
       
       noFill(); 
-      push();
-      translate(this.averageLeftEyeBrow[1],this.averageLeftEyeBrow[0])
-      arc(-1,-4.5,5,3,3.3,5) //left eyebrow raised
-      pop();
+      // push();
+      // translate(this.averageLeftEyeBrow[1],this.averageLeftEyeBrow[0])
+      arc(this.averageLeftEyeBrow[0]-1,this.averageLeftEyeBrow[1]-2.5,5,3,3.3,5) //left eyebrow raised -1, -4
+      // pop();
 
-      push();
-      translate(this.averageRightEyeBrow[1],this.averageRightEyeBrow[0])
-      arc(3.5,-4.5,5,3,4.5,6.2) //left eyebrow raised
-      pop();
+      //RIGHT 
+      // push();
+      // translate(this.averageRightEyeBrow[1],this.averageRightEyeBrow[0])
+      arc(this.averageRightEyeBrow[0]+1.5,this.averageRightEyeBrow[1]-2.5,5,3,4.5,6.2) //left eyebrow raised 3.5,-4.5
+      // pop();
     
   }
 
-  else if (this.eyeType == 4){ // suspicious / confused eyes
+  else if (this.eyeType == 3){ // suspicious / confused eyes
       strokeWeight(1);
       stroke(DarkAqua_const);
       fill(DarkAqua_const);
-      ellipse(-1,-2, 1.5, 4) // left eye
-    
-      ellipse(3.5,-2, 1.5, 4) // right eye
 
-      noStroke();
-
-      fill(DirtyAqua_const); 
-      triangle(-3.5,-3, -3.5,-.5,-0.5,-1.5,) // left eye indent
-      triangle(1,-3, 1,-0.5,4,-1.5,) // right eye indent
+    //LEFT EYE
       
-      stroke(DarkAqua_const);
+    // push(); // push and pop to contain translate in order to use it twice
+    // translate(this.averageLeftEye[1],this.averageLeftEye[0]) // the arrays have to be the other way aroun with translate
+    ellipse(this.averageLeftEye[0]-.5,this.averageLeftEye[1], 1.5, 4) // left eye -1,-2
+    
+    noStroke();
+    fill(DirtyAqua_const); 
+    triangle(this.averageLeftEye[0]-3.5,this.averageLeftEye[1]+2.5,this.averageLeftEye[0]-3.5,this.averageLeftEye[1]-2,this.averageLeftEye[0],this.averageLeftEye[1],) // left eye indent
+
+    stroke(DarkAqua_const);
       fill(DirtyAqua_const); 
       strokeWeight(.4);
 
-      arc(-1,1,3,3,3.85,5.5) //bottom left eye beam line
-      arc(3.5,1,3,3,3.85,5.5)//bottom right eye beam line
+      arc(this.averageLeftEye[0]-.35,this.averageLeftEye[1]+3,3,3,3.85,5.5) //bottom left eye beam line -1, 1
+    // pop();
 
+    //RIGHT EYE
+    // push(); // push and pop to contain translate in order to use it twice
+    // translate(this.averageRightEye[1],this.averageRightEye[0]) // the arrays have to be the other way aroun with translate
+   // you might have to do the maths instead as this will be too hard to figure out with translate.
+   strokeWeight(1);
+   stroke(DarkAqua_const);
+    fill(DarkAqua_const);
+    ellipse(this.averageRightEye[0]+2,this.averageRightEye[1], 1.5, 4) // right eye 3.5, -2
+
+
+    noStroke();
+    fill(DirtyAqua_const); 
+    triangle(this.averageRightEye[0],this.averageRightEye[1]-1.5, this.averageRightEye[0],this.averageRightEye[1]+1.5,this.averageRightEye[0]+2.5,this.averageRightEye[1]) // right eye indent
+      
+    stroke(DarkAqua_const);
+    fill(DirtyAqua_const); 
+    strokeWeight(.4);
+
+    arc(this.averageRightEye[0]+2.1,this.averageRightEye[1]+3,3,3,3.85,5.5)//bottom right eye beam line 3.5,1
+    // pop();
+
+    //EYEBROWS
+    // push();
+    //   translate(this.averageLeftEyeBrow[1],this.averageLeftEyeBrow[0])
       strokeWeight(1); /// thicker for brows
-
-      arc(3.5,-5,5,2,7,2.5) // right eyebrow concerned
       noFill(); 
-      arc(-1,-4.5,5,3,3.3,5.4) //left eyebrow raised
+      arc(this.averageLeftEyeBrow[0]-.5,this.averageLeftEyeBrow[1]-2,5,3,3.3,5.4) //left eyebrow raised -1,-4.5
+      // pop();
+
+      // push();
+      // translate(this.averageRightEyeBrow[1],this.averageRightEyeBrow[0])
+      strokeWeight(1); /// thicker for brows
+      noFill(); 
+      arc(this.averageRightEyeBrow[0]+3,this.averageRightEyeBrow[1]-3.5,5,2,7,2.5) // right eyebrow concerned 3.5,-5
+      // pop();
+      
+     
+      
+     
      
   }
 
-  else if (this.eyeType == 3){ // sad, scared and tired eyes
+  else if (this.eyeType == 2){ // sad, scared and tired eyes
       /**Eyes */
       strokeWeight(1);
       stroke(DarkAqua_const);
       fill(DarkAqua_const);
-      ellipse(-1,-2, 1.5, 4) // left eye
+    //LEFT EYE
+      
+    // push(); // push and pop to contain translate in order to use it twice
+    // translate(this.averageLeftEye[1],this.averageLeftEye[0]) // the arrays have to be the other way aroun with translate
+    ellipse(this.averageLeftEye[0]-.5,this.averageLeftEye[1], 1.5, 4) // left eye -1,-2
     
-      ellipse(3.5,-2, 1.5, 4) // right eye
+    noStroke();
+    fill(DirtyAqua_const); 
+    triangle(this.averageLeftEye[0]-3.5,this.averageLeftEye[1]+2.5,this.averageLeftEye[0]-3.5,this.averageLeftEye[1]-2,this.averageLeftEye[0],this.averageLeftEye[1],) // left eye indent
 
-      noStroke();
+    //RIGHT EYE
+    // push(); // push and pop to contain translate in order to use it twice
+    // translate(this.averageRightEye[1],this.averageRightEye[0]) // the arrays have to be the other way aroun with translate
+   // you might have to do the maths instead as this will be too hard to figure out with translate.
+   stroke(DarkAqua_const);
+   fill(DarkAqua_const);
+   ellipse(this.averageRightEye[0]+2,this.averageRightEye[1], 1.5, 4) // right eye 3.5, -2
 
-      fill(DirtyAqua_const); 
-      triangle(-3.5,-3, -3.5,-.5,-0.5,-1.5,) // left eye indent
-      triangle(1,-3, 1,-0.5,4,-1.5,) // right eye indent
+   noStroke();
+   fill(DirtyAqua_const); 
+   triangle(this.averageRightEye[0],this.averageRightEye[1]-1.5, this.averageRightEye[0],this.averageRightEye[1]+1.5,this.averageRightEye[0]+2.5,this.averageRightEye[1]) // right eye indent
+
       /**Eyebrows/skin */
       noFill()
       strokeWeight(.4)
@@ -235,27 +281,28 @@ function Face() {
       strokeWeight(1); /// thicker for brows
       fill(DirtyAqua_const); // fill for cover the eye bpart
 
-      arc(4.5,-4.7,3.5,3.5,7.7,3.3) // right eyebrow sad
-      arc(-2,-4.7,3.5,3.5,6.1,1.8) // left eyebrow sad
+      arc(this.averageRightEyeBrow[0]+3,this.averageRightEyeBrow[1]-3,3.5,3.5,7.7,3.3) // right eyebrow sad 4.5,-4.7
+      arc(this.averageRightEyeBrow[0]-3,this.averageRightEyeBrow[1]-3,3.5,3.5,6.1,1.8) // left eyebrow sad-2,-4
       noFill(); 
   }
 
-else if (this.eyeType == 2){ // dead eyes
+else if (this.eyeType == 4){ // dead eyes
  
    /**Eyes */
    strokeWeight(1);
    stroke(DarkAqua_const);
    fill(DarkAqua_const);
-  
-   line(-2,-3.5,0,-0.5) // left x line 1
-   line(0,-3.5,-2,-0.5) // left x line 2
+  //left
+   line(this.averageLeftEye[0]-1.25,this.averageLeftEye[1]-2.5,this.averageLeftEye[0]+.85,this.averageLeftEye[1]+.5) // left x line //-2,-3.5,0,-0.5
+   line(this.averageLeftEye[0]+.85,this.averageLeftEye[1]-2.5,this.averageLeftEye[0]-1.25,this.averageLeftEye[1]+.5) // left x line 2 //0,-3.5,-2,-0.5
 
-   line(2.5,-3.5,4.5,-0.5) // right x line 1
-   line(4.5,-3.5,2.5,-0.5) // right x line 2
+   //right
+   line(this.averageRightEye[0]+1.75,this.averageRightEye[1]-2.60,this.averageRightEye[0]+3.85,this.averageRightEye[1]+.5) // right x line 1 //2.5,-3.5,4.5,-0.5
+   line(this.averageRightEye[0]+3.85,this.averageRightEye[1]-2.60,this.averageRightEye[0]+1.75,this.averageRightEye[1]+.5) // right x line 2 //4.5,-3.5,2.5,-0.5
 
    noFill(); 
-   arc(-1,-4,10,3,3.6,5) //left eyebrow raised
-   arc(3.5,-4,10,3,4.5,5.75) //left eyebrow raised
+   arc(this.averageLeftEyeBrow[0],this.averageLeftEyeBrow[1]-2.75,10,3,3.6,5) //left eyebrow raised -1, -4
+   arc(this.averageRightEyeBrow[0]+3,this.averageRightEyeBrow[1]-2.75,10,3,4.5,5.75) //right eyebrow raised 3.5, -4
    
 }
 
@@ -273,7 +320,7 @@ if (this.mouthType == 1){ // happy chapy mouth
 
   arc(1.5, 4, 5.6, 5, 0, PI, PI + QUARTER_PI); // mouth darkness
   noFill();
-  arc(-2.7, 2, 3, 3, 0, HALF_PI); // left cheek outline
+  arc(-2.7, 2, 3, 3, 0, HALF_PI); // left cheek outline -2.7
 }
 
 else if (this.mouthType == 2){ // whistle mouth
@@ -350,7 +397,7 @@ if (this.noseType == 1){ // basic ball nose
 
 }
 
-else if (this.noseType == 2){ // pinocchio nose
+else if (this.noseType == 4){ // pinocchio nose
   stroke(DarkAqua_const);
   fill(DirtyAqua_const);
   strokeWeight(.4);
@@ -378,7 +425,7 @@ stroke(DarkAqua_const);
   arc(2.2,2.5,1,1.2,4,6) // nose under curve
 }
 
-else if (this.noseType == 4){ // pimple nose
+else if (this.noseType == 2){ // pimple nose
   stroke(DarkAqua_const);
   fill(DirtyAqua_const)
   strokeWeight(.4);
@@ -665,7 +712,7 @@ strokeWeight(.7)
   this.setProperties = function(settings) {
     this.eyeType = int(map(settings[0], 0, 100, 1, 4));
     this.mouthType = int(map(settings[1], 0, 100, 1, 4));
-     this.noseType = int(map(settings[2], 0, 100, 1,4));
+     this.noseType = int(map(settings[2], 0, 100, 0,4)); // change back to 1 for start of map
     this.earType = int(map(settings[3], 0, 100, 1, 4));
     this.extraType = int(map(settings[4], 0, 100, 1, 4));
   }

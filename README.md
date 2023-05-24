@@ -21,3 +21,7 @@ I have successfully implemented my code into my design!! The arcs were very diff
 Fixed the angle mode problem in which the face points were jumbled and my code was doing somersaults. Each of the sliders are now working perfectly with each facial feature and they are named. The next step is to get the positions working and train the machine learning. I would also like to do something cool with colour but I’m not sure if that is possible within my timeframe.
 
 started implementing the postions into the first set f eyes. I realsied it needs trranslate so i dont have to do heaps of math. This also requires push and pops.
+
+24/03
+
+The positions are harded to do than I thought. Originally I thought i could merely translate each group of shapes that needed to be put together. this for some reason only worked for the first face that my design was mapped to. It did not work for any others. This meant I had to use another method which is the strategy I’m currently sitting at. It involves mapping every single shape on every variation of facial features. Whilst this works, it is taking a very long time. I spent about 4 hours on this today and i have only just finished doing the eyes. I believe I need to figure something else out or limit my design and its features. 
