@@ -12,11 +12,6 @@ var NUM_SLIDERS = 5;
 // other variables can be in here too
 // here's some examples for colors used
 
-
-
-
-
-
 // example of a global function
 // given a segment, this returns the average point [x, y]
 function segment_average(segment) {
@@ -93,6 +88,10 @@ function Face() {
   this.averageBottomLip = segment_average(positions.bottom_lip)
   this.averageChin = segment_average(positions.chin)
 
+  this.centerMouth = segment_average([positions.top_lip[8],positions.bottom_lip[6]])
+
+  this.nosecenter = segment_average([positions.nose_bridge[2],positions.nose_tip[2]])
+
   /* plug it in like 
 
   Ellipse(this.averageRightEye[0], this.averageRightEye[1], 1, 1) */
@@ -103,7 +102,34 @@ function Face() {
   this.LeyeX = positions.left_eye[0][0] 
   this.LeyeY = positions.left_eye[0][1]
 
-  this.cheekTopLeft = positions.top_lip[7][0]
+  this.noseCenterX = positions.nose_tip[2][0]
+  this.noseCenterY = positions.nose_tip[2][1]
+
+  this.cheekTopLeftX = positions.top_lip[0][0]
+  this.cheekTopLeftY = positions.top_lip[0][1]
+
+  this.cheekTopRightX = positions.top_lip[6][0]
+  this.cheekTopRightY = positions.top_lip[6][1]
+
+  this.cheekBottomLeftX = positions.bottom_lip[4][0]
+  this.cheekBottomLeftY = positions.bottom_lip[4][1]
+
+  this.cheekMiddleLeftX = positions.top_lip[7][0]
+  this.cheekMiddleLeftY = positions.top_lip[7][1]
+
+  this.cheekMiddleRightX = positions.top_lip[11][0]
+  this.cheekMiddleRightY = positions.top_lip[11][1]
+  
+
+  this.cheekBottomRightX = positions.bottom_lip[0][0]
+  this.cheekBottomRightY = positions.bottom_lip[0][1]
+
+  this.earPosLeft = positions.chin[0][0]
+  this.earPosRight = positions.chin[16][0]
+
+  this.ChinCenterX = positions.chin[8][0]
+  this.ChinCenterX = positions.chin[8][1]
+
 
     ///MY CODE starts here
      push()
@@ -208,7 +234,6 @@ function Face() {
     fill(DarkAqua_const);
     ellipse(this.averageRightEye[0]+2,this.averageRightEye[1], 1.5, 4) // right eye 3.5, -2
 
-
     noStroke();
     fill(DirtyAqua_const); 
     triangle(this.averageRightEye[0],this.averageRightEye[1]-1.5, this.averageRightEye[0],this.averageRightEye[1]+1.5,this.averageRightEye[0]+2.5,this.averageRightEye[1]) // right eye indent
@@ -234,10 +259,6 @@ function Face() {
       noFill(); 
       arc(this.averageRightEyeBrow[0]+3,this.averageRightEyeBrow[1]-3.5,5,2,7,2.5) // right eyebrow concerned 3.5,-5
       // pop();
-      
-     
-      
-     
      
   }
 
@@ -313,8 +334,8 @@ if (this.mouthType == 1){ // happy chapy mouth
   noFill();
   strokeWeight(.4);
 
-  arc(1.5, 3, 6, 9, 0, PI, PI + QUARTER_PI); // mouth bottom
-  arc(1.5, 3, 6, 1, 0, PI, PI + QUARTER_PI); // mouth top
+  arc(1.5,3, 6, 9, 0, PI, PI + QUARTER_PI); // mouth bottom  1.5,3
+   arc(1.5,3, 6, 1, 0, PI, PI + QUARTER_PI); // mouth top 1.5,3
 
   fill(DarkAqua_const);
 
@@ -323,38 +344,38 @@ if (this.mouthType == 1){ // happy chapy mouth
   arc(-2.7, 2, 3, 3, 0, HALF_PI); // left cheek outline -2.7
 }
 
-else if (this.mouthType == 2){ // whistle mouth
+else if (this.mouthType == 4){ // whistle mouth
 
   stroke(DarkAqua_const);
-  noFill();
+  fill(DirtyAqua_const);
   strokeWeight(.4);
 
-  arc(-2,5,5,5.3,1.7,4.4 ) // left cheek line
-  arc(-1,5,4,4.3,5.5,7) // right cheek line
+  arc(this.cheekMiddleLeftX-2.75,this.cheekMiddleLeftY+4.25,5,5.3,1.7,4.4 ) // left cheek line -2,5
+  arc(this.centerMouth[0]-.5,this.centerMouth[1]+4.25,4,4.3,5.5,7) // right cheek line -1, 5
 
   fill(DirtyAqua_const); // fill to show lips
-  arc(4,5.2,4,4.3,4,2) // lip line 
+  arc(this.cheekMiddleRightX+4.75,this.cheekMiddleRightY+4.55,4,4.3,4,2) // lip line 4,5.2
  
   fill(DarkAqua_const);
-  ellipse(4.2,5.2, 2,2.5) // mouth
+  ellipse(this.cheekMiddleRightX+4.75,this.cheekMiddleRightY+4.55, 2,2.5) // mouth 4.2,5.2
 
-  ellipse(8,5.2, 1.1,1) // music note circle
+  ellipse(this.cheekTopRightX+7.2,this.cheekTopRightY+4.75, 1.1,1) // music note circle 8,5.2
   noFill();
   strokeWeight(.5); // up thickness for lines
-  line(8.5,3,8.5,5.3) // straight line music note
-  arc(9,2.2,2,2,7.7,2) //music note flick
+  line(this.cheekTopRightX+7.2,this.cheekTopRightY+2.25,this.cheekTopRightX+7.75,this.cheekTopRightY+4.75) // straight line music note 8.5,3,8.5,5.3
+  arc(this.cheekTopRightX+7.75,this.cheekTopRightY+1.5,2,2,7.7,2) //music note flick 9,2.2
 
 }
 
-else if (this.mouthType == 3){ //shocked, sad or scared mouth
+else if (this.mouthType == 2){ //shocked, sad or scared mouth
 
   stroke(DarkAqua_const);
   fill(DarkAqua_const);
   strokeWeight(.4);
 
   fill(DirtyAqua_const);
-  arc(3.5,6.5,4,4,5.75,1.85) // right cheek
-  arc(-0.5,6.5,4,4,1.2,3.3) // left cheek
+  arc(this.cheekBottomRightX+2.5,this.cheekBottomRightY+5.75,4,4,5.75,1.85) // right cheek 3.5,6.5
+  arc(this.cheekBottomLeftX-.25,this.cheekBottomLeftY+5.35,4,4,1.2,3.3) // left cheek -0.5, 6.5
 
   fill(DarkAqua_const);
 
@@ -367,23 +388,23 @@ else if (this.mouthType == 3){ //shocked, sad or scared mouth
   
 }
 
-else if (this.mouthType == 4){ // buck tooth mouth
+else if (this.mouthType == 3){ // buck tooth mouth
 stroke(DarkAqua_const);
 fill(DarkAqua_const);
 strokeWeight(.4);
 
-ellipse(1.5,5.5,4,4) //mouth dark
+ellipse(this.centerMouth[0]+1.75,this.centerMouth[1]+4.85,4,4) //mouth dark 1.5,5.5
 
 fill(DirtyAqua_const);
-ellipse(1.5,6.65,3,1.5) //tongue
-line(1,6,1.5,6.5) // tongue dent
+ellipse(this.centerMouth[0]+1.80,this.centerMouth[1]+5.9,3,1.5) //tongue 1.5,6.65
+line(this.centerMouth[0]+1.3,this.centerMouth[1]+5.3,this.centerMouth[0]+1.80,this.centerMouth[1]+5.9) // tongue dent1,6,1.5,6.5
 
-ellipse(2,4.5,1.5,1.75) //tooth right
-ellipse(1,4.5,1.5,1.75) //tooth left
+ellipse(this.centerMouth[0]+2.25,this.centerMouth[1]+3.85,1.5,1.75) //tooth right 2, 4.5
+ellipse(this.centerMouth[0]+1.25,this.centerMouth[1]+3.85,1.5,1.75) //tooth left 1,4.5
 
 noFill();
-arc(0.5,5, 5,5,3.2,4.3) // top cheek
-arc(0.75,6,5,5,1.5,2.4) //  bottom cheek
+arc(this.cheekTopLeftX+1,this.cheekTopLeftY+4.5, 5,5,3.2,4.3) // top cheek 0.5,5
+arc(this.cheekBottomLeftX+1,this.cheekBottomLeftY+5,5,5,1.5,2.4) //  bottom cheek 0.75,6 
 
 }
 /*NOSE**********/
@@ -513,7 +534,7 @@ else if (this.earType == 2){ // ellf
     arc(-8,-2,2.6,3.5,2.75,4.75) // ear point
    
     arc(-6.5,-3.6,3,3.5,1.3,3.2) //ear dip to mask curve
-  pop()
+  
     push();
     noFill()
     rotate(-0.7)
