@@ -25,3 +25,7 @@ started implementing the postions into the first set f eyes. I realsied it needs
 24/03
 
 The positions are harded to do than I thought. Originally I thought i could merely translate each group of shapes that needed to be put together. this for some reason only worked for the first face that my design was mapped to. It did not work for any others. This meant I had to use another method which is the strategy I’m currently sitting at. It involves mapping every single shape on every variation of facial features. Whilst this works, it is taking a very long time. I spent about 4 hours on this today and i have only just finished doing the eyes. I believe I need to figure something else out or limit my design and its features. 
+
+25/05
+
+New Plan. I am Only going to Map the eyes and mouths to the facial points. If I have time, I will do the nose as well. My main focus is going to be on training the machine learning function on recognising different people. I need to put my variations into rules (e.g blondes have a smile, brunettes have a whistling mouth). I’m halfway through finishing the mouth so that will be my next step after I finish it.
