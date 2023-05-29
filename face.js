@@ -328,23 +328,23 @@ else if (this.eyeType == 4){ // dead eyes
 }
 
 /*********MOUTH**************/
-if (this.mouthType == 1){ // happy chapy mouth
+if (this.mouthType == 4){ // happy chapy mouth
 
   stroke(DarkAqua_const);
   noFill();
   strokeWeight(.4);
 
-  arc(1.5,3, 6, 9, 0, PI, PI + QUARTER_PI); // mouth bottom  1.5,3
-   arc(1.5,3, 6, 1, 0, PI, PI + QUARTER_PI); // mouth top 1.5,3
+  arc(this.centerMouth[0]+1.75,this.centerMouth[1]+2.5, 6, 9, 0, PI, PI + QUARTER_PI); // mouth bottom  1.5,3
+   arc(this.centerMouth[0]+1.75,this.centerMouth[1]+2.5, 6, 1, 0, PI, PI + QUARTER_PI); // mouth top 1.5,3
 
   fill(DarkAqua_const);
 
-  arc(1.5, 4, 5.6, 5, 0, PI, PI + QUARTER_PI); // mouth darkness
-  noFill();
-  arc(-2.7, 2, 3, 3, 0, HALF_PI); // left cheek outline -2.7
+  arc(this.centerMouth[0]+1.75,this.centerMouth[1]+3.5 ,5.6, 5, 0, PI, PI + QUARTER_PI); // mouth darkness 1.5,4
+ fill(DirtyAqua_const)
+  arc(this.cheekTopLeftX-2,this.cheekTopLeftY+1.5, 3, 3, 0, HALF_PI); // left cheek outline -2.7,2 
 }
 
-else if (this.mouthType == 4){ // whistle mouth
+else if (this.mouthType == 1){ // whistle mouth
 
   stroke(DarkAqua_const);
   fill(DirtyAqua_const);
@@ -409,53 +409,59 @@ arc(this.cheekBottomLeftX+1,this.cheekBottomLeftY+5,5,5,1.5,2.4) //  bottom chee
 }
 /*NOSE**********/
 
-if (this.noseType == 1){ // basic ball nose
+if (this.noseType == 2){ // basic ball nose
   stroke(DarkAqua_const);
   fill(DirtyAqua_const)
   strokeWeight(.4);
   
-  arc(2.5,1,3,3,4,3) // round ball nose
+  arc(this.noseCenterX+2.5,this.noseCenterY+1,3,3,4,3,OPEN) // round ball nose 2.5,1
 
 }
 
-else if (this.noseType == 4){ // pinocchio nose
+else if (this.noseType == 3){ // pinocchio nose
   stroke(DarkAqua_const);
   fill(DirtyAqua_const);
   strokeWeight(.4);
 
-  rect(1,0.5,8.5,1.6,5,5,5) // nose bridge/ main
-  line(7,0.3,8,-0.5) // stem 1 base
-  line(7.3,0.1,7,-0.5) // stem one branch
-  ellipse(8.5,-0.5,1,0.75) // stem 1 leaf
-  line(5.5,1.5,7,3) // stem 2 base
-  line(6.8,2.7,7.4,2.6) // stem 2 branch
+  rect(this.noseCenterX+1.75,this.noseCenterY+.1,8.5,1.6,5,5,5) // nose bridge/ main 1, 0.5
+  line(this.noseCenterX+7.5,this.noseCenterY,this.noseCenterX+8.5,this.noseCenterY-0.75) // stem 1 base 7,0.3,8,-0.5
+  line(this.noseCenterX+7.5,this.noseCenterY,this.noseCenterX+7.4,this.noseCenterY-0.75) // stem one branch 7.3,0.1,7,-0.5
+  ellipse(this.noseCenterX+9,this.noseCenterY-0.75,1,0.75) // stem 1 leaf 8.5,-0.5
+  line(this.noseCenterX+6,this.noseCenterY+1.25,this.noseCenterX+7.4,this.noseCenterY+2.75) // stem 2 base 5.5,1.5,7,3
+  line(this.noseCenterX+6.75,this.noseCenterY+2.25,this.noseCenterX+7.75,this.noseCenterY+2.25) // stem 2 branch 6.8,2.7,7.4,2.6
   noStroke()
-  rect(0.5,0.7,2,1.2,5,5,5) // gets rid of the rect join 
+  rect(this.noseCenterX+1,this.noseCenterY+.3,2,1.2,5,5,5) // gets rid of the rect join 
  
 }
 
-else if (this.noseType == 3){ // plastic surgery nose
+else if (this.noseType == 1){ // plastic surgery nose
 stroke(DarkAqua_const);
   noFill()
   strokeWeight(.4);
 
-  arc(3.3,-2,3,5,1.75,3.3) // nose bridge curve
+  arc(this.noseCenterX+3.5,this.noseCenterY-2.5,3,5,1.75,3.3) // nose bridge curve 3.3 -2
   fill(DirtyAqua_const)
-  arc(3.2,1.45,2.2,2.2,4.5,2,OPEN) // nose knob
+  arc(this.noseCenterX+3.4,this.noseCenterY+0.9,2.2,2.2,4.5,2,OPEN) // nose knob 3.2,1.45
   noFill()
-  arc(2.2,2.5,1,1.2,4,6) // nose under curve
+  arc(this.noseCenterX+2.4,this.noseCenterY+1.9,1,1.2,4,6) // nose under curve 2.2,2.5
+
+  stroke(DirtyAqua_const)
+  strokeWeight(1)
+  arc(this.noseCenterX+2.95 ,this.noseCenterY-2,3,5,1.75,3.3) // nose bridge negativespace curve 3.3 -2
+  arc(this.noseCenterX+2.6,this.noseCenterY+1.1,1,1.2,4,6) // nose negative under curve 2.2,2.5
+
 }
 
-else if (this.noseType == 2){ // pimple nose
+else if (this.noseType == 4){ // pimple nose
   stroke(DarkAqua_const);
   fill(DirtyAqua_const)
   strokeWeight(.4);
   
-  arc(2.5,0,3,5,4.5,2.3,OPEN) // nose birdge and knob
-  arc(1.1,1.5,2,2,1,4.5) // nostril
-  arc(3.9,0,1.2,1.2,4,8,OPEN) // pimple
-  ellipse(2.5,-1,0.1) // blackhead top
-  ellipse(2.1,1.2,0.1) // blackhead bottom
+  arc(this.noseCenterX+2.75,this.noseCenterY,3,5,4.5,2.3,OPEN) // nose birdge and knob 2.5,0
+  arc(this.noseCenterX+1.1,this.noseCenterY+1,2,2,1,4.5) // nostril 1.1,1.5
+  arc(this.noseCenterY+3.5,this.noseCenterY,1.2,1.2,4,8,OPEN) // pimple 3.9,0
+  ellipse(this.noseCenterX+3,this.noseCenterY-1,0.1) // blackhead top 2.5,-1
+  ellipse(this.noseCenterX+2.5,this.noseCenterY+1,0.1) // blackhead bottom 2.1,1.2
 
 }
 
@@ -733,7 +739,7 @@ strokeWeight(.7)
   this.setProperties = function(settings) {
     this.eyeType = int(map(settings[0], 0, 100, 1, 4));
     this.mouthType = int(map(settings[1], 0, 100, 1, 4));
-     this.noseType = int(map(settings[2], 0, 100, 0,4)); // change back to 1 for start of map
+     this.noseType = int(map(settings[2], 0, 100, 1,4)); // change back to 1 for start of map
     this.earType = int(map(settings[3], 0, 100, 1, 4));
     this.extraType = int(map(settings[4], 0, 100, 1, 4));
   }

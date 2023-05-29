@@ -29,3 +29,17 @@ The positions are harded to do than I thought. Originally I thought i could mere
 25/05
 
 New Plan. I am Only going to Map the eyes and mouths to the facial points. If I have time, I will do the nose as well. My main focus is going to be on training the machine learning function on recognising different people. I need to put my variations into rules (e.g blondes have a smile, brunettes have a whistling mouth). I’m halfway through finishing the mouth so that will be my next step after I finish it.
+
+30/05
+
+The Nose, mouth and eyes are now all mapped onto certain facial points and move pretty decently with the different variations of faces. I’ve started to train the machine and I’ve made it to 60 faces. It’s pretty tiring! I decided to use these five different variations. Expression, Hair length, Hair colour, Eye colour and Age.
+
+Expression = MouthType: smile/Scared Mouth, smile with teeth/Happy Mouth,  neutral/ Bucktooth Mouth,  quirky/ Whistle Mouth
+
+Hair length = EarType: Bald/Earring , Short/Elf,  Medium/Large ear, Long/HeadPhones
+
+Hair Colour = NoseType: Red/Plastic Nose, Brunette/Round Nose, Blonde/Pinnochio Nose, Bald/Pimple  Nose
+
+Eye colour = EyeType: Brown/Dead Eyes, Black/Surprised Eyes, Blue/Suspicious Eyes, Green/Scared Eyes
+
+Age = ExtraType: Young/Devil Horns, Youngmiddle/Scars,  MiddleOld/Arrow,  Old/ Holes
