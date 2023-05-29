@@ -43,3 +43,6 @@ Hair Colour = NoseType: Red/Plastic Nose, Brunette/Round Nose, Blonde/Pinnochio 
 Eye colour = EyeType: Brown/Dead Eyes, Black/Surprised Eyes, Blue/Suspicious Eyes, Green/Scared Eyes
 
 Age = ExtraType: Young/Devil Horns, Youngmiddle/Scars,  MiddleOld/Arrow,  Old/ Holes
+
+30/05
+ I decided to include photo shoots, animated characters and candid photos of me and my friends for my smaple images! Unfortunately my faces don’t currently work as their is a problem with the arrays that needs to be solved.

@@ -92,6 +92,8 @@ function Face() {
 
   this.nosecenter = segment_average([positions.nose_bridge[2],positions.nose_tip[2]])
 
+  this.headCenterAverage = segment_average([positions.chin[0],positions.chin[16]])
+
   /* plug it in like 
 
   Ellipse(this.averageRightEye[0], this.averageRightEye[1], 1, 1) */
@@ -131,6 +133,9 @@ function Face() {
   this.ChinCenterX = positions.chin[8][1]
 
 
+ 
+
+
     ///MY CODE starts here
      push()
     scale(0.3)
@@ -143,15 +148,34 @@ function Face() {
     
     ellipse(0,0,this.faceX,this.faceY) // main big old face circle
     
-    ellipse(-1,-3.1,this.faceX+1,this.faceY/1.4) // head top, varies on facial direction
+    ellipse(this.headCenterAverage[0]-1,-3.1,this.faceX+1,this.faceY/1.4) // head top, varies on facial direction -1, -3.1
     noStroke();
     ellipse(0,0,this.faceX-.5,this.faceY-1.5) // face colour to hide the head top outline. size x=-.25, y = -1
      pop();
 
-    
+    push()
     angleMode(RADIANS);
     scale(0.3)
+        
 
+    // [
+    //   133.33333333333331,
+    //   600,
+    //   300,
+    //   500,
+    //   300
+    // ]
+
+
+
+    // with scale
+    // [
+    //   100,
+    //   300,
+    //   300,
+    //   300,
+    //   300
+    // ]
     /*EYES*********************/
 
     if (this.eyeType == 1){ // surpised/ eyebrows raised expression HAS POSTIONS
@@ -711,7 +735,11 @@ strokeWeight(.7)
    // fill(0)
    //ellipse(0,0, 0.5,0.5) center point
    //rect(-2,-2,4.5,4) sizing debug 
+   console.log(this.eyeType)
+   //console.log(this.settings[0])
    angleMode(DEGREES); //// never move this 
+  pop()
+  
   }
 
   // example of a function *inside* the face object.
@@ -739,7 +767,7 @@ strokeWeight(.7)
   this.setProperties = function(settings) {
     this.eyeType = int(map(settings[0], 0, 100, 1, 4));
     this.mouthType = int(map(settings[1], 0, 100, 1, 4));
-     this.noseType = int(map(settings[2], 0, 100, 1,4)); // change back to 1 for start of map
+    this.noseType = int(map(settings[2], 0, 100, 1,4)); // change back to 1 for start of map
     this.earType = int(map(settings[3], 0, 100, 1, 4));
     this.extraType = int(map(settings[4], 0, 100, 1, 4));
   }
@@ -747,9 +775,9 @@ strokeWeight(.7)
   /* get internal properties as list of numbers 0-100 */
   this.getProperties = function() {
     let settings = new Array(3);
-    settings[0] = map(this.eyeType, 1, 2, 0, 100);
+    settings[0] = map(this.eyeType, 1, 4, 0, 100);
     settings[1] = map(this.mouthType, 1, 2, 0, 100);
-     settings[2] = map(this.noseType, 1, 2, 0, 100);
+    settings[2] = map(this.noseType, 1, 2, 0, 100);
     settings[3] = map(this.earType, 1, 2, 0, 100);
     settings[4] = map(this.extraType, 1, 2, 0, 100);
     return settings;
