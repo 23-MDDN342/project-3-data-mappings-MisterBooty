@@ -46,3 +46,13 @@ Age = ExtraType: Young/Devil Horns, Youngmiddle/Scars,  MiddleOld/Arrow,  Old/ H
 
 30/05
  I decided to include photo shoots, animated characters and candid photos of me and my friends for my smaple images! Unfortunately my faces don’t currently work as their is a problem with the arrays that needs to be solved.
+
+ 31/05
+
+ Given that my arrays weren’t working I thought it might be a good opportunity to perhaps retrain my data to something a little less speculative. I got rid of hair length and replaced it with jewellery , as well as added some tweaks to age and hair colour. The new training variables with the facial features pairs  are:
+
+MouthType = Mouth expression: smile/Scared Mouth, smile with teeth/Happy Mouth,  neutral/ Bucktooth Mouth,  ‘ooo’ mouth / Whistle Mouth
+EarType = Jewellery:  2x Earrings /Earring , 1x Earring /Elf,  None /Large ear, Necklace/HeadPhones
+NoseType = Hair Colour: Red/Plastic Nose, Brunette/Pimple Nose, Blonde/Pinocchio Nose, Black/Round  Nose
+EyeType =  Eye colour Brown/Dead Eyes, Black/Surprised Eyes, Blue/Suspicious Eyes, Green/Scared Eyes
+ExtraType = Age: < 35 /Devil Horns, 35<45 /Arrow, 45<60 /Scars, 60+ / Holes
