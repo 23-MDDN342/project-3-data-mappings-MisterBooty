@@ -138,7 +138,16 @@ function Face() {
 
     ///MY CODE starts here
      push()
+     console.log("center - left = " + (this.noseCenterX - this.cheekTopLeftX ))
+     console.log("right - center = " + ( this.cheekTopRightX - this.noseCenterX) )
+     if((this.noseCenterX - this.cheekTopLeftX) < (this.cheekTopRightX - this.noseCenterX )){
+     scale(-0.3, 0.3) // pheobe code
+     }
+     else{
+
+
     scale(0.3)
+     }
 
     /*FACE SETUP***/
 
@@ -155,7 +164,13 @@ function Face() {
 
     push()
     angleMode(RADIANS);
-    scale(0.3)
+
+    if((this.noseCenterX - this.cheekTopLeftX) < (this.cheekTopRightX - this.noseCenterX )){
+      scale(-0.3, 0.3)
+      }
+      else{
+      scale(0.3) // phoebe code
+      }
         
 
     // [
