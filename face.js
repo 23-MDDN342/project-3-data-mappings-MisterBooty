@@ -4,7 +4,7 @@
  */  
 
 // remove this or set to false to enable full program (load will be slower)
-var DEBUG_MODE = true;
+var DEBUG_MODE = false;
 
 // this can be used to set the number of sliders to show
 var NUM_SLIDERS = 5;
@@ -142,7 +142,7 @@ function Face() {
 
     /*FACE SETUP***/
 
-    strokeWeight(.75);
+    strokeWeight(.4);
     stroke(DarkAqua_const);
     fill(DirtyAqua_const);
     
@@ -177,8 +177,9 @@ function Face() {
     //   300
     // ]
     /*EYES*********************/
+    // scale(1) 
 
-    if (this.eyeType == 1){ // surpised/ eyebrows raised expression HAS POSTIONS
+    if (this.eyeType < 25){ // surpised/ eyebrows raised expression HAS POSTIONS
 
       strokeWeight(1);
       stroke(DarkAqua_const);
@@ -227,7 +228,7 @@ function Face() {
     
   }
 
-  else if (this.eyeType == 3){ // suspicious / confused eyes
+  else if (this.eyeType >= 25 && this.eyeType <= 50){ // suspicious / confused eyes
       strokeWeight(1);
       stroke(DarkAqua_const);
       fill(DarkAqua_const);
@@ -286,7 +287,7 @@ function Face() {
      
   }
 
-  else if (this.eyeType == 2){ // sad, scared and tired eyes
+  else if (this.eyeType >= 50 && this.eyeType <= 75){ // sad, scared and tired eyes
       /**Eyes */
       strokeWeight(1);
       stroke(DarkAqua_const);
@@ -331,7 +332,7 @@ function Face() {
       noFill(); 
   }
 
-else if (this.eyeType == 4){ // dead eyes
+else if (this.eyeType > 75){ // dead eyes
  
    /**Eyes */
    strokeWeight(1);
@@ -352,7 +353,8 @@ else if (this.eyeType == 4){ // dead eyes
 }
 
 /*********MOUTH**************/
-if (this.mouthType == 4){ // happy chapy mouth
+
+if (this.mouthType < 25){ // happy chapy mouth
 
   stroke(DarkAqua_const);
   noFill();
@@ -368,7 +370,7 @@ if (this.mouthType == 4){ // happy chapy mouth
   arc(this.cheekTopLeftX-2,this.cheekTopLeftY+1.5, 3, 3, 0, HALF_PI); // left cheek outline -2.7,2 
 }
 
-else if (this.mouthType == 1){ // whistle mouth
+else if (this.mouthType >=25 && this.mouthType <= 50){ // whistle mouth
 
   stroke(DarkAqua_const);
   fill(DirtyAqua_const);
@@ -391,7 +393,7 @@ else if (this.mouthType == 1){ // whistle mouth
 
 }
 
-else if (this.mouthType == 2){ //shocked, sad or scared mouth
+else if (this.mouthType >= 50 && this.mouthType <= 75){ //shocked, sad or scared mouth
 
   stroke(DarkAqua_const);
   fill(DarkAqua_const);
@@ -412,7 +414,7 @@ else if (this.mouthType == 2){ //shocked, sad or scared mouth
   
 }
 
-else if (this.mouthType == 3){ // buck tooth mouth
+else if (this.mouthType > 75){ // buck tooth mouth
 stroke(DarkAqua_const);
 fill(DarkAqua_const);
 strokeWeight(.4);
@@ -433,7 +435,7 @@ arc(this.cheekBottomLeftX+1,this.cheekBottomLeftY+5,5,5,1.5,2.4) //  bottom chee
 }
 /*NOSE**********/
 
-if (this.noseType == 2){ // basic ball nose
+if (this.noseType < 25){ // basic ball nose
   stroke(DarkAqua_const);
   fill(DirtyAqua_const)
   strokeWeight(.4);
@@ -442,7 +444,7 @@ if (this.noseType == 2){ // basic ball nose
 
 }
 
-else if (this.noseType == 3){ // pinocchio nose
+else if (this.noseType >=25 && this.noseType <= 50 ){ // pinocchio nose
   stroke(DarkAqua_const);
   fill(DirtyAqua_const);
   strokeWeight(.4);
@@ -458,7 +460,7 @@ else if (this.noseType == 3){ // pinocchio nose
  
 }
 
-else if (this.noseType == 1){ // plastic surgery nose
+else if (this.noseType >=50 && this.noseType <= 75){ // plastic surgery nose
 stroke(DarkAqua_const);
   noFill()
   strokeWeight(.4);
@@ -476,7 +478,7 @@ stroke(DarkAqua_const);
 
 }
 
-else if (this.noseType == 4){ // pimple nose
+else if (this.noseType > 75){ // pimple nose
   stroke(DarkAqua_const);
   fill(DirtyAqua_const)
   strokeWeight(.4);
@@ -492,7 +494,7 @@ else if (this.noseType == 4){ // pimple nose
 
 /*EARS******/
 
-if (this.earType == 1){ // ear with earring
+if (this.earType < 25){ // ear with earring
   stroke(DarkAqua_const);
     fill(DirtyAqua_const);
     strokeWeight(.4);
@@ -509,7 +511,7 @@ if (this.earType == 1){ // ear with earring
    
 }
 
-else if (this.earType == 4){ // headphones
+else if (this.earType >= 25 && this.earType <= 50){ // headphones
     stroke(DarkAqua_const);
     fill(DirtyAqua_const);
     strokeWeight(.4);
@@ -532,7 +534,7 @@ else if (this.earType == 4){ // headphones
     
 }
 
-else if (this.earType == 3){ // big hearing ear
+else if (this.earType >= 50 && this.earType <= 75){ // big hearing ear
     fill(DirtyAqua_const);
   
     noStroke()
@@ -549,7 +551,7 @@ else if (this.earType == 3){ // big hearing ear
     arc(-6.75, 1.5, 2, 1.5, 6,3,OPEN); // ear smaller line
 }
 
-else if (this.earType == 2){ // ellf
+else if (this.earType > 75){ // ellf
    stroke(DarkAqua_const);
     fill(DirtyAqua_const);
     strokeWeight(.4);
@@ -577,7 +579,7 @@ else if (this.earType == 2){ // ellf
 
 }
 
-if (this.extraType == 2){ // devil horns
+if (this.extraType < 25){ // devil horns
   stroke(DarkAqua_const);
   
    strokeWeight(.7);
@@ -596,7 +598,7 @@ if (this.extraType == 2){ // devil horns
    arc(4,-8.4,5,6,6.2,1.11) //right  horn outline fill
 }
 
-else if (this.extraType == 1){ // holes
+else if (this.extraType >= 25 && this.extraType <= 50){ // holes
    stroke(DarkAqua_const);
    fill(DirtyAqua_const);
    strokeWeight(.4);
@@ -639,7 +641,7 @@ else if (this.extraType == 1){ // holes
    ellipse(-5,-4.5,0.2,0.5) // middle left below ear
 }
 
-else if (this.extraType == 4){ // scars
+else if (this.extraType >= 50 && this.extraType <= 75){ // scars
 stroke(DarkAqua_const);
    noFill()
    strokeWeight(.3);
@@ -655,7 +657,7 @@ stroke(DarkAqua_const);
   
 }
 
-else if (this.extraType == 3){ // arrow in head
+else if (this.extraType > 75){ // arrow in head
 stroke(DarkAqua_const);
 fill(DirtyAqua_const);
 strokeWeight(.7)
@@ -735,7 +737,7 @@ strokeWeight(.7)
    // fill(0)
    //ellipse(0,0, 0.5,0.5) center point
    //rect(-2,-2,4.5,4) sizing debug 
-   console.log(this.eyeType)
+   //console.log(this.eyeType)
    //console.log(this.settings[0])
    angleMode(DEGREES); //// never move this 
   pop()
@@ -765,21 +767,21 @@ strokeWeight(.7)
 
   /* set internal properties based on list numbers 0-100 */
   this.setProperties = function(settings) {
-    this.eyeType = int(map(settings[0], 0, 100, 1, 4));
-    this.mouthType = int(map(settings[1], 0, 100, 1, 4));
-    this.noseType = int(map(settings[2], 0, 100, 1,4)); // change back to 1 for start of map
-    this.earType = int(map(settings[3], 0, 100, 1, 4));
-    this.extraType = int(map(settings[4], 0, 100, 1, 4));
+    this.eyeType = int(map(settings[0], 0, 100, 0, 100));
+    this.mouthType = int(map(settings[1], 0, 100, 0, 100));
+    this.noseType = int(map(settings[2], 0, 100, 0, 100)); // change back to 1 for start of map
+    this.earType = int(map(settings[3], 0, 100, 0, 100));
+    this.extraType = int(map(settings[4], 0, 100, 0, 100));
   }
 
   /* get internal properties as list of numbers 0-100 */
   this.getProperties = function() {
     let settings = new Array(3);
-    settings[0] = map(this.eyeType, 1, 4, 0, 100);
-    settings[1] = map(this.mouthType, 1, 2, 0, 100);
-    settings[2] = map(this.noseType, 1, 2, 0, 100);
-    settings[3] = map(this.earType, 1, 2, 0, 100);
-    settings[4] = map(this.extraType, 1, 2, 0, 100);
+    settings[0] = int(map(this.eyeType, 0, 100, 0, 100));
+    settings[1] =  int(map(this.mouthType, 0, 100 , 0, 100));
+    settings[2] = int(map(this.noseType, 0, 100, 0, 100));
+    settings[3] = map(this.earType, 0, 100, 0, 100);
+    settings[4] = map(this.extraType, 0, 100, 0, 100);
     return settings;
   }
 }
