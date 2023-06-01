@@ -1,19 +1,8 @@
-/*
- * FaceMap class - holds all informaiton about one mapped
- * face and is able to draw itself.
- */  
 
-// remove this or set to false to enable full program (load will be slower)
 var DEBUG_MODE = false;
 
-// this can be used to set the number of sliders to show
 var NUM_SLIDERS = 5;
 
-// other variables can be in here too
-// here's some examples for colors used
-
-// example of a global function
-// given a segment, this returns the average point [x, y]
 function segment_average(segment) {
   let sum_x = 0;
   let sum_y = 0;
@@ -25,28 +14,14 @@ function segment_average(segment) {
   return [sum_x / s_len , sum_y / s_len ];
 }
 
-// This where you define your own face object
 function Face() {
-  // these are state variables for a face
-  // (your variables should be different!)
-  this.detailColour = [204, 136, 17];
-  this.mainColour = [51, 119, 153];
-  this.num_eyes = 2;    // can be either 1 (cyclops) or 2 (two eyes)
-  this.eye_shift = -1;   // range is -10 to 10
-  this.mouth_size = 1;  // range is 0.5 to 8
-
-  this.chinColour = [153, 153, 51]
-  this.lipColour = [136, 68, 68]
-  this.eyebrowColour = [119, 85, 17]
-
-  //MINE
+  
   this.eyeType = 2
   this.mouthType = 2
   this.earType = 2
   this.noseType = 2
   this.extraType = 2
 
-  //my code
   const stroke_color = [95, 52, 8];
 
   const LightBeige_const = [186,169,149];
@@ -58,25 +33,15 @@ function Face() {
   const DarkAqua_const = [45,60,58];
   const DirtyAqua_const = [131,201,195];
 
-  
-  // let stroke_color = [95, 52, 8];
-
-  // let LightBeige_const = [186,169,149];
-  //   let DarkBeige_const = [122,111,98];
-  //   let MustyBrown_const = [46,42,37];
-  //   let FadeBrown_const = [59,53,47];
-  //   let SoftBrown_const = [51,46,41];
-
     this.faceX = width/73.84// 73.84
     this.faceY = height/26.31// 26.31
-
-
-  /*
-   * Draw the face with position lists that include:
-   *    chin, right_eye, left_eye, right_eyebrow, left_eyebrow
-   *    bottom_lip, top_lip, nose_tip, nose_bridge, 
-   */  
+  
+   /*    chin, right_eye, left_eye, right_eyebrow, left_eyebrow
+   *    bottom_lip, top_lip, nose_tip, nose_bridge, */
+    
   this.draw = function(positions) {
+
+    /*------------------- Average Value Points----------------------*/
 
   this.averageRightEye = segment_average(positions.right_eye)
   this.averageLeftEye = segment_average(positions.left_eye)
@@ -94,9 +59,9 @@ function Face() {
 
   this.headCenterAverage = segment_average([positions.chin[0],positions.chin[16]])
 
-  /* plug it in like 
+   /*------------------- Specific Value Points----------------------*/
 
-  Ellipse(this.averageRightEye[0], this.averageRightEye[1], 1, 1) */
+   //EYES
     
   this.ReyeX = positions.right_eye[0][0] 
   this.ReyeY = positions.right_eye[0][1]
@@ -104,8 +69,12 @@ function Face() {
   this.LeyeX = positions.left_eye[0][0] 
   this.LeyeY = positions.left_eye[0][1]
 
+  //NOSE
+
   this.noseCenterX = positions.nose_tip[2][0]
   this.noseCenterY = positions.nose_tip[2][1]
+
+  // CHEEKS
 
   this.cheekTopLeftX = positions.top_lip[0][0]
   this.cheekTopLeftY = positions.top_lip[0][1]
@@ -122,21 +91,23 @@ function Face() {
   this.cheekMiddleRightX = positions.top_lip[11][0]
   this.cheekMiddleRightY = positions.top_lip[11][1]
   
-
   this.cheekBottomRightX = positions.bottom_lip[0][0]
   this.cheekBottomRightY = positions.bottom_lip[0][1]
+
+  //EARS
 
   this.earPosLeft = positions.chin[0][0]
   this.earPosRight = positions.chin[16][0]
 
+  //CHIN
+
   this.ChinCenterX = positions.chin[8][0]
   this.ChinCenterX = positions.chin[8][1]
+/*------------------------------Points End---------------------*/
 
 
- 
-
-
-    ///MY CODE starts here
+  /* Code below resourced Phoebe Zeller */
+  //START    \/
      push()
      console.log("center - left = " + (this.noseCenterX - this.cheekTopLeftX ))
      console.log("right - center = " + ( this.cheekTopRightX - this.noseCenterX) )
@@ -144,12 +115,12 @@ function Face() {
      scale(-0.3, 0.3) // pheobe code
      }
      else{
-
+// END    /\
 
     scale(0.3)
      }
 
-    /*FACE SETUP***/
+    /*----------------------FACE SETUP--------------------*/
 
     strokeWeight(.4);
     stroke(DarkAqua_const);
@@ -165,56 +136,33 @@ function Face() {
     push()
     angleMode(RADIANS);
 
+      /* Code below resourced Phoebe Zeller */
+  //START    \/
     if((this.noseCenterX - this.cheekTopLeftX) < (this.cheekTopRightX - this.noseCenterX )){
       scale(-0.3, 0.3)
       }
       else{
-      scale(0.3) // phoebe code
+      scale(0.3)
       }
-        
+    // END    /\
 
-    // [
-    //   133.33333333333331,
-    //   600,
-    //   300,
-    //   500,
-    //   300
-    // ]
+    /*-----------------FACIAL-------------*/
 
-
-
-    // with scale
-    // [
-    //   100,
-    //   300,
-    //   300,
-    //   300,
-    //   300
-    // ]
-    /*EYES*********************/
-    // scale(1) 
+    /*******EYES******/
 
     if (this.eyeType < 25){ // surpised/ eyebrows raised expression HAS POSTIONS
-
+      
+      //LEFT EYE
       strokeWeight(1);
       stroke(DarkAqua_const);
       fill(DarkAqua_const);
 
-      //LEFT EYE
-      
-       // push and pop to contain translate in order to use it twice
-      //translate(this.averageLeftEye[1],this.averageLeftEye[0]) // the arrays have to be the other way aroun with translate
       ellipse(this.averageLeftEye[0]-.5,this.averageLeftEye[1], 1.5, 4) // left eye -1,-2
-      
       noStroke();
       fill(DirtyAqua_const); 
       triangle(this.averageLeftEye[0]-3.5,this.averageLeftEye[1]+2.5,this.averageLeftEye[0]-3.5,this.averageLeftEye[1]-2,this.averageLeftEye[0],this.averageLeftEye[1],) // left eye indent
-      // remove the maths for the middle point of the trianlge. -3 to +3 for bottom point.
-
+      
       //RIGHT EYE
-       // push and pop to contain translate in order to use it twice
-     // translate(this.averageRightEye[1],this.averageRightEye[0]) // the arrays have to be the other way aroun with translate
-     // you might have to do the maths instead as this will be too hard to figure out with translate.
       stroke(DarkAqua_const);
       fill(DarkAqua_const);
       ellipse(this.averageRightEye[0]+2,this.averageRightEye[1], 1.5, 4) // right eye 3.5, -2
@@ -226,33 +174,21 @@ function Face() {
       //EYEBROWS
       strokeWeight(1); /// thicker for brows
       stroke(DarkAqua_const);
-
-      //LEFT
-      
       noFill(); 
-      // push();
-      // translate(this.averageLeftEyeBrow[1],this.averageLeftEyeBrow[0])
-      arc(this.averageLeftEyeBrow[0]-1,this.averageLeftEyeBrow[1]-2.5,5,3,3.3,5) //left eyebrow raised -1, -4
-      // pop();
-
-      //RIGHT 
-      // push();
-      // translate(this.averageRightEyeBrow[1],this.averageRightEyeBrow[0])
-      arc(this.averageRightEyeBrow[0]+1.5,this.averageRightEyeBrow[1]-2.5,5,3,4.5,6.2) //left eyebrow raised 3.5,-4.5
-      // pop();
-    
+      //left
+      arc(this.averageLeftEyeBrow[0]-1,this.averageLeftEyeBrow[1]-2.5,5,3,3.3,5) 
+      //right
+      arc(this.averageRightEyeBrow[0]+1.5,this.averageRightEyeBrow[1]-2.5,5,3,4.5,6.2) 
+     
   }
 
   else if (this.eyeType >= 25 && this.eyeType <= 50){ // suspicious / confused eyes
-      strokeWeight(1);
+    
+    //LEFT EYE
+    strokeWeight(1);
       stroke(DarkAqua_const);
       fill(DarkAqua_const);
-
-    //LEFT EYE
-      
-    // push(); // push and pop to contain translate in order to use it twice
-    // translate(this.averageLeftEye[1],this.averageLeftEye[0]) // the arrays have to be the other way aroun with translate
-    ellipse(this.averageLeftEye[0]-.5,this.averageLeftEye[1], 1.5, 4) // left eye -1,-2
+   ellipse(this.averageLeftEye[0]-.5,this.averageLeftEye[1], 1.5, 4) 
     
     noStroke();
     fill(DirtyAqua_const); 
@@ -262,17 +198,13 @@ function Face() {
       fill(DirtyAqua_const); 
       strokeWeight(.4);
 
-      arc(this.averageLeftEye[0]-.35,this.averageLeftEye[1]+3,3,3,3.85,5.5) //bottom left eye beam line -1, 1
-    // pop();
+      arc(this.averageLeftEye[0]-.35,this.averageLeftEye[1]+3,3,3,3.85,5.5) //bottom left eye beam line 
 
     //RIGHT EYE
-    // push(); // push and pop to contain translate in order to use it twice
-    // translate(this.averageRightEye[1],this.averageRightEye[0]) // the arrays have to be the other way aroun with translate
-   // you might have to do the maths instead as this will be too hard to figure out with translate.
    strokeWeight(1);
    stroke(DarkAqua_const);
     fill(DarkAqua_const);
-    ellipse(this.averageRightEye[0]+2,this.averageRightEye[1], 1.5, 4) // right eye 3.5, -2
+    ellipse(this.averageRightEye[0]+2,this.averageRightEye[1], 1.5, 4) 
 
     noStroke();
     fill(DirtyAqua_const); 
@@ -282,54 +214,44 @@ function Face() {
     fill(DirtyAqua_const); 
     strokeWeight(.4);
 
-    arc(this.averageRightEye[0]+2.1,this.averageRightEye[1]+3,3,3,3.85,5.5)//bottom right eye beam line 3.5,1
-    // pop();
-
+    arc(this.averageRightEye[0]+2.1,this.averageRightEye[1]+3,3,3,3.85,5.5)//bottom right eye beam line 
+   
     //EYEBROWS
-    // push();
-    //   translate(this.averageLeftEyeBrow[1],this.averageLeftEyeBrow[0])
-      strokeWeight(1); /// thicker for brows
-      noFill(); 
-      arc(this.averageLeftEyeBrow[0]-.5,this.averageLeftEyeBrow[1]-2,5,3,3.3,5.4) //left eyebrow raised -1,-4.5
-      // pop();
 
-      // push();
-      // translate(this.averageRightEyeBrow[1],this.averageRightEyeBrow[0])
+  //left
       strokeWeight(1); /// thicker for brows
       noFill(); 
-      arc(this.averageRightEyeBrow[0]+3,this.averageRightEyeBrow[1]-3.5,5,2,7,2.5) // right eyebrow concerned 3.5,-5
-      // pop();
-     
+      arc(this.averageLeftEyeBrow[0]-.5,this.averageLeftEyeBrow[1]-2,5,3,3.3,5.4) //left eyebrow raised
+  //right
+      strokeWeight(1); /// thicker for brows
+      noFill(); 
+      arc(this.averageRightEyeBrow[0]+3,this.averageRightEyeBrow[1]-3.5,5,2,7,2.5) // right eyebrow concerned
+  
   }
 
   else if (this.eyeType >= 50 && this.eyeType <= 75){ // sad, scared and tired eyes
-      /**Eyes */
+   
+    //LEFT EYE
       strokeWeight(1);
       stroke(DarkAqua_const);
       fill(DarkAqua_const);
-    //LEFT EYE
-      
-    // push(); // push and pop to contain translate in order to use it twice
-    // translate(this.averageLeftEye[1],this.averageLeftEye[0]) // the arrays have to be the other way aroun with translate
-    ellipse(this.averageLeftEye[0]-.5,this.averageLeftEye[1], 1.5, 4) // left eye -1,-2
+     ellipse(this.averageLeftEye[0]-.5,this.averageLeftEye[1], 1.5, 4) 
     
     noStroke();
     fill(DirtyAqua_const); 
     triangle(this.averageLeftEye[0]-3.5,this.averageLeftEye[1]+2.5,this.averageLeftEye[0]-3.5,this.averageLeftEye[1]-2,this.averageLeftEye[0],this.averageLeftEye[1],) // left eye indent
 
     //RIGHT EYE
-    // push(); // push and pop to contain translate in order to use it twice
-    // translate(this.averageRightEye[1],this.averageRightEye[0]) // the arrays have to be the other way aroun with translate
-   // you might have to do the maths instead as this will be too hard to figure out with translate.
    stroke(DarkAqua_const);
    fill(DarkAqua_const);
-   ellipse(this.averageRightEye[0]+2,this.averageRightEye[1], 1.5, 4) // right eye 3.5, -2
+   ellipse(this.averageRightEye[0]+2,this.averageRightEye[1], 1.5, 4) 
 
    noStroke();
    fill(DirtyAqua_const); 
    triangle(this.averageRightEye[0],this.averageRightEye[1]-1.5, this.averageRightEye[0],this.averageRightEye[1]+1.5,this.averageRightEye[0]+2.5,this.averageRightEye[1]) // right eye indent
 
-      /**Eyebrows/skin */
+      /**Eyebrows and skin lines*/
+
       noFill()
       strokeWeight(.4)
       stroke(DarkAqua_const);
@@ -340,7 +262,7 @@ function Face() {
       arc(4.1,0.5,3,3,0.5,1.5)//smaller bottom right eye tired line
 
       strokeWeight(1); /// thicker for brows
-      fill(DirtyAqua_const); // fill for cover the eye bpart
+      fill(DirtyAqua_const); // fill for cover the eye part
 
       arc(this.averageRightEyeBrow[0]+3,this.averageRightEyeBrow[1]-3,3.5,3.5,7.7,3.3) // right eyebrow sad 4.5,-4.7
       arc(this.averageRightEyeBrow[0]-3,this.averageRightEyeBrow[1]-3,3.5,3.5,6.1,1.8) // left eyebrow sad-2,-4
@@ -349,21 +271,21 @@ function Face() {
 
 else if (this.eyeType > 75){ // dead eyes
  
-   /**Eyes */
    strokeWeight(1);
    stroke(DarkAqua_const);
    fill(DarkAqua_const);
+
   //left
-   line(this.averageLeftEye[0]-1.25,this.averageLeftEye[1]-2.5,this.averageLeftEye[0]+.85,this.averageLeftEye[1]+.5) // left x line //-2,-3.5,0,-0.5
-   line(this.averageLeftEye[0]+.85,this.averageLeftEye[1]-2.5,this.averageLeftEye[0]-1.25,this.averageLeftEye[1]+.5) // left x line 2 //0,-3.5,-2,-0.5
+   line(this.averageLeftEye[0]-1.25,this.averageLeftEye[1]-2.5,this.averageLeftEye[0]+.85,this.averageLeftEye[1]+.5) // left x line 
+   line(this.averageLeftEye[0]+.85,this.averageLeftEye[1]-2.5,this.averageLeftEye[0]-1.25,this.averageLeftEye[1]+.5) // left x line 2 
 
    //right
-   line(this.averageRightEye[0]+1.75,this.averageRightEye[1]-2.60,this.averageRightEye[0]+3.85,this.averageRightEye[1]+.5) // right x line 1 //2.5,-3.5,4.5,-0.5
-   line(this.averageRightEye[0]+3.85,this.averageRightEye[1]-2.60,this.averageRightEye[0]+1.75,this.averageRightEye[1]+.5) // right x line 2 //4.5,-3.5,2.5,-0.5
+   line(this.averageRightEye[0]+1.75,this.averageRightEye[1]-2.60,this.averageRightEye[0]+3.85,this.averageRightEye[1]+.5) // right x line 1 
+   line(this.averageRightEye[0]+3.85,this.averageRightEye[1]-2.60,this.averageRightEye[0]+1.75,this.averageRightEye[1]+.5) // right x line 2 
 
    noFill(); 
-   arc(this.averageLeftEyeBrow[0],this.averageLeftEyeBrow[1]-2.75,10,3,3.6,5) //left eyebrow raised -1, -4
-   arc(this.averageRightEyeBrow[0]+3,this.averageRightEyeBrow[1]-2.75,10,3,4.5,5.75) //right eyebrow raised 3.5, -4
+   arc(this.averageLeftEyeBrow[0],this.averageLeftEyeBrow[1]-2.75,10,3,3.6,5) //left eyebrow raised 
+   arc(this.averageRightEyeBrow[0]+3,this.averageRightEyeBrow[1]-2.75,10,3,4.5,5.75) //right eyebrow raised 
    
 }
 
@@ -375,14 +297,15 @@ if (this.mouthType < 25){ // happy chapy mouth
   noFill();
   strokeWeight(.4);
 
-  arc(this.centerMouth[0]+1.75,this.centerMouth[1]+2.5, 6, 9, 0, PI, PI + QUARTER_PI); // mouth bottom  1.5,3
-   arc(this.centerMouth[0]+1.75,this.centerMouth[1]+2.5, 6, 1, 0, PI, PI + QUARTER_PI); // mouth top 1.5,3
+  arc(this.centerMouth[0]+1.75,this.centerMouth[1]+2.5, 6, 9, 0, PI, PI + QUARTER_PI); // mouth bottom  
+   arc(this.centerMouth[0]+1.75,this.centerMouth[1]+2.5, 6, 1, 0, PI, PI + QUARTER_PI); // mouth top 
 
   fill(DarkAqua_const);
 
-  arc(this.centerMouth[0]+1.75,this.centerMouth[1]+3.5 ,5.6, 5, 0, PI, PI + QUARTER_PI); // mouth darkness 1.5,4
+  arc(this.centerMouth[0]+1.75,this.centerMouth[1]+3.5 ,5.6, 5, 0, PI, PI + QUARTER_PI); // mouth darkness 
  fill(DirtyAqua_const)
-  arc(this.cheekTopLeftX-2,this.cheekTopLeftY+1.5, 3, 3, 0, HALF_PI); // left cheek outline -2.7,2 
+  arc(this.cheekTopLeftX-2,this.cheekTopLeftY+1.5, 3, 3, 0, HALF_PI); // left cheek outline small
+
 }
 
 else if (this.mouthType >=25 && this.mouthType <= 50){ // whistle mouth
@@ -391,20 +314,22 @@ else if (this.mouthType >=25 && this.mouthType <= 50){ // whistle mouth
   fill(DirtyAqua_const);
   strokeWeight(.4);
 
-  arc(this.cheekMiddleLeftX-2.75,this.cheekMiddleLeftY+4.25,5,5.3,1.7,4.4 ) // left cheek line -2,5
-  arc(this.centerMouth[0]-.5,this.centerMouth[1]+4.25,4,4.3,5.5,7) // right cheek line -1, 5
+  // cheeks
+  arc(this.cheekMiddleLeftX-2.75,this.cheekMiddleLeftY+4.25,5,5.3,1.7,4.4 ) // left cheek line
+  arc(this.centerMouth[0]-.5,this.centerMouth[1]+4.25,4,4.3,5.5,7) // right cheek line 
 
   fill(DirtyAqua_const); // fill to show lips
-  arc(this.cheekMiddleRightX+4.75,this.cheekMiddleRightY+4.55,4,4.3,4,2) // lip line 4,5.2
+  arc(this.cheekMiddleRightX+4.75,this.cheekMiddleRightY+4.55,4,4.3,4,2) // lip line 
  
   fill(DarkAqua_const);
-  ellipse(this.cheekMiddleRightX+4.75,this.cheekMiddleRightY+4.55, 2,2.5) // mouth 4.2,5.2
+  ellipse(this.cheekMiddleRightX+4.75,this.cheekMiddleRightY+4.55, 2,2.5) // mouth
 
-  ellipse(this.cheekTopRightX+7.2,this.cheekTopRightY+4.75, 1.1,1) // music note circle 8,5.2
+//music note
+  ellipse(this.cheekTopRightX+7.2,this.cheekTopRightY+4.75, 1.1,1) // music note circle 
   noFill();
   strokeWeight(.5); // up thickness for lines
-  line(this.cheekTopRightX+7.2,this.cheekTopRightY+2.25,this.cheekTopRightX+7.75,this.cheekTopRightY+4.75) // straight line music note 8.5,3,8.5,5.3
-  arc(this.cheekTopRightX+7.75,this.cheekTopRightY+1.5,2,2,7.7,2) //music note flick 9,2.2
+  line(this.cheekTopRightX+7.2,this.cheekTopRightY+2.25,this.cheekTopRightX+7.75,this.cheekTopRightY+4.75) // straight line music note 
+  arc(this.cheekTopRightX+7.75,this.cheekTopRightY+1.5,2,2,7.7,2) //music note flick 
 
 }
 
@@ -415,8 +340,8 @@ else if (this.mouthType >= 50 && this.mouthType <= 75){ //shocked, sad or scared
   strokeWeight(.4);
 
   fill(DirtyAqua_const);
-  arc(this.cheekBottomRightX+2.5,this.cheekBottomRightY+5.75,4,4,5.75,1.85) // right cheek 3.5,6.5
-  arc(this.cheekBottomLeftX-.25,this.cheekBottomLeftY+5.35,4,4,1.2,3.3) // left cheek -0.5, 6.5
+  arc(this.cheekBottomRightX+2.5,this.cheekBottomRightY+5.75,4,4,5.75,1.85) // right cheek 
+  arc(this.cheekBottomLeftX-.25,this.cheekBottomLeftY+5.35,4,4,1.2,3.3) // left cheek 
 
   fill(DarkAqua_const);
 
@@ -430,86 +355,102 @@ else if (this.mouthType >= 50 && this.mouthType <= 75){ //shocked, sad or scared
 }
 
 else if (this.mouthType > 75){ // buck tooth mouth
+
 stroke(DarkAqua_const);
 fill(DarkAqua_const);
 strokeWeight(.4);
 
-ellipse(this.centerMouth[0]+1.75,this.centerMouth[1]+4.85,4,4) //mouth dark 1.5,5.5
+ellipse(this.centerMouth[0]+1.75,this.centerMouth[1]+4.85,4,4) //mouth darkness
 
 fill(DirtyAqua_const);
-ellipse(this.centerMouth[0]+1.80,this.centerMouth[1]+5.9,3,1.5) //tongue 1.5,6.65
-line(this.centerMouth[0]+1.3,this.centerMouth[1]+5.3,this.centerMouth[0]+1.80,this.centerMouth[1]+5.9) // tongue dent1,6,1.5,6.5
+ellipse(this.centerMouth[0]+1.80,this.centerMouth[1]+5.9,3,1.5) //tongue 
+line(this.centerMouth[0]+1.3,this.centerMouth[1]+5.3,this.centerMouth[0]+1.80,this.centerMouth[1]+5.9) // tongue dent
 
-ellipse(this.centerMouth[0]+2.25,this.centerMouth[1]+3.85,1.5,1.75) //tooth right 2, 4.5
-ellipse(this.centerMouth[0]+1.25,this.centerMouth[1]+3.85,1.5,1.75) //tooth left 1,4.5
+ellipse(this.centerMouth[0]+2.25,this.centerMouth[1]+3.85,1.5,1.75) //tooth right 
+ellipse(this.centerMouth[0]+1.25,this.centerMouth[1]+3.85,1.5,1.75) //tooth left
 
 noFill();
-arc(this.cheekTopLeftX+1,this.cheekTopLeftY+4.5, 5,5,3.2,4.3) // top cheek 0.5,5
-arc(this.cheekBottomLeftX+1,this.cheekBottomLeftY+5,5,5,1.5,2.4) //  bottom cheek 0.75,6 
+arc(this.cheekTopLeftX+1,this.cheekTopLeftY+4.5, 5,5,3.2,4.3) // top cheek
+arc(this.cheekBottomLeftX+1,this.cheekBottomLeftY+5,5,5,1.5,2.4) //  bottom cheek 
 
 }
-/*NOSE**********/
+
+/********NOSE**********/
 
 if (this.noseType < 25){ // basic ball nose
+
   stroke(DarkAqua_const);
   fill(DirtyAqua_const)
   strokeWeight(.4);
   
-  arc(this.noseCenterX+2.5,this.noseCenterY+1,3,3,4,3,OPEN) // round ball nose 2.5,1
+  arc(this.noseCenterX+2.5,this.noseCenterY+1,3,3,4,3,OPEN) // round ball nose
 
 }
 
 else if (this.noseType >=25 && this.noseType <= 50 ){ // pinocchio nose
+
   stroke(DarkAqua_const);
   fill(DirtyAqua_const);
   strokeWeight(.4);
 
-  rect(this.noseCenterX+1.75,this.noseCenterY+.1,8.5,1.6,5,5,5) // nose bridge/ main 1, 0.5
-  line(this.noseCenterX+7.5,this.noseCenterY,this.noseCenterX+8.5,this.noseCenterY-0.75) // stem 1 base 7,0.3,8,-0.5
-  line(this.noseCenterX+7.5,this.noseCenterY,this.noseCenterX+7.4,this.noseCenterY-0.75) // stem one branch 7.3,0.1,7,-0.5
-  ellipse(this.noseCenterX+9,this.noseCenterY-0.75,1,0.75) // stem 1 leaf 8.5,-0.5
-  line(this.noseCenterX+6,this.noseCenterY+1.25,this.noseCenterX+7.4,this.noseCenterY+2.75) // stem 2 base 5.5,1.5,7,3
-  line(this.noseCenterX+6.75,this.noseCenterY+2.25,this.noseCenterX+7.75,this.noseCenterY+2.25) // stem 2 branch 6.8,2.7,7.4,2.6
+// main nose
+  rect(this.noseCenterX+1.75,this.noseCenterY+.1,8.5,1.6,5,5,5) // nose 
+
+//stem 1
+  line(this.noseCenterX+7.5,this.noseCenterY,this.noseCenterX+8.5,this.noseCenterY-0.75) // stem 1 base 
+  line(this.noseCenterX+7.5,this.noseCenterY,this.noseCenterX+7.4,this.noseCenterY-0.75) // stem one branch 
+  ellipse(this.noseCenterX+9,this.noseCenterY-0.75,1,0.75) // stem 1 leaf 
+
+  //stem 2
+  line(this.noseCenterX+6,this.noseCenterY+1.25,this.noseCenterX+7.4,this.noseCenterY+2.75) // stem 2 base 
+  line(this.noseCenterX+6.75,this.noseCenterY+2.25,this.noseCenterX+7.75,this.noseCenterY+2.25) // stem 2 branch 
+  
+  // negative space
   noStroke()
   rect(this.noseCenterX+1,this.noseCenterY+.3,2,1.2,5,5,5) // gets rid of the rect join 
  
 }
 
 else if (this.noseType >=50 && this.noseType <= 75){ // plastic surgery nose
+
 stroke(DarkAqua_const);
   noFill()
   strokeWeight(.4);
 
-  arc(this.noseCenterX+3.5,this.noseCenterY-2.5,3,5,1.75,3.3) // nose bridge curve 3.3 -2
+  arc(this.noseCenterX+3.5,this.noseCenterY-2.5,3,5,1.75,3.3) // nose bridge curve 
+
   fill(DirtyAqua_const)
-  arc(this.noseCenterX+3.4,this.noseCenterY+0.9,2.2,2.2,4.5,2,OPEN) // nose knob 3.2,1.45
+  arc(this.noseCenterX+3.4,this.noseCenterY+0.9,2.2,2.2,4.5,2,OPEN) // nose knob 
+
   noFill()
-  arc(this.noseCenterX+2.4,this.noseCenterY+1.9,1,1.2,4,6) // nose under curve 2.2,2.5
+  arc(this.noseCenterX+2.4,this.noseCenterY+1.9,1,1.2,4,6) // nose under curve
 
   stroke(DirtyAqua_const)
   strokeWeight(1)
-  arc(this.noseCenterX+2.95 ,this.noseCenterY-2,3,5,1.75,3.3) // nose bridge negativespace curve 3.3 -2
-  arc(this.noseCenterX+2.6,this.noseCenterY+1.1,1,1.2,4,6) // nose negative under curve 2.2,2.5
+  arc(this.noseCenterX+2.95 ,this.noseCenterY-2,3,5,1.75,3.3) // nose bridge negativespace curve 
+  arc(this.noseCenterX+2.6,this.noseCenterY+1.1,1,1.2,4,6) // nose negative under curve
 
 }
 
 else if (this.noseType > 75){ // pimple nose
+
   stroke(DarkAqua_const);
   fill(DirtyAqua_const)
   strokeWeight(.4);
   
-  arc(this.noseCenterX+2.75,this.noseCenterY,3,5,4.5,2.3,OPEN) // nose birdge and knob 2.5,0
-  arc(this.noseCenterX+1.1,this.noseCenterY+1,2,2,1,4.5) // nostril 1.1,1.5
-  arc(this.noseCenterY+3.5,this.noseCenterY,1.2,1.2,4,8,OPEN) // pimple 3.9,0
-  ellipse(this.noseCenterX+3,this.noseCenterY-1,0.1) // blackhead top 2.5,-1
-  ellipse(this.noseCenterX+2.5,this.noseCenterY+1,0.1) // blackhead bottom 2.1,1.2
+  arc(this.noseCenterX+2.75,this.noseCenterY,3,5,4.5,2.3,OPEN) // nose birdge and knob 
+  arc(this.noseCenterX+1.1,this.noseCenterY+1,2,2,1,4.5) // nostril
+
+  arc(this.noseCenterY+3.5,this.noseCenterY,1.2,1.2,4,8,OPEN) // pimple 
+  ellipse(this.noseCenterX+3,this.noseCenterY-1,0.1) // blackhead top 
+  ellipse(this.noseCenterX+2.5,this.noseCenterY+1,0.1) // blackhead bottom 
 
 }
-
 
 /*EARS******/
 
 if (this.earType < 25){ // ear with earring
+
   stroke(DarkAqua_const);
     fill(DirtyAqua_const);
     strokeWeight(.4);
@@ -519,7 +460,7 @@ if (this.earType < 25){ // ear with earring
 
     noFill()
 
-    arc(-6.8, 3, 1.5, 2.5, 5,4,OPEN); // earrings hoopmain
+    arc(-6.8, 3, 1.5, 2.5, 5,4,OPEN); // earrings hoop
    
     fill(LightBeige_const);
     ellipse(-6.8,4.75,0.75) // earring jewel
@@ -527,9 +468,11 @@ if (this.earType < 25){ // ear with earring
 }
 
 else if (this.earType >= 25 && this.earType <= 50){ // headphones
+
     stroke(DarkAqua_const);
     fill(DirtyAqua_const);
     strokeWeight(.4);
+
     ellipse(-5.75,0.5,6) // headphone ear cushion
     fill(DarkAqua_const);
     ellipse(-6.5,0.5,6) // headphone shell
@@ -550,6 +493,7 @@ else if (this.earType >= 25 && this.earType <= 50){ // headphones
 }
 
 else if (this.earType >= 50 && this.earType <= 75){ // big hearing ear
+
     fill(DirtyAqua_const);
   
     noStroke()
@@ -566,7 +510,8 @@ else if (this.earType >= 50 && this.earType <= 75){ // big hearing ear
     arc(-6.75, 1.5, 2, 1.5, 6,3,OPEN); // ear smaller line
 }
 
-else if (this.earType > 75){ // ellf
+else if (this.earType > 75){ // elf
+
    stroke(DarkAqua_const);
     fill(DirtyAqua_const);
     strokeWeight(.4);
@@ -614,6 +559,7 @@ if (this.extraType < 25){ // devil horns
 }
 
 else if (this.extraType >= 25 && this.extraType <= 50){ // holes
+
    stroke(DarkAqua_const);
    fill(DirtyAqua_const);
    strokeWeight(.4);
@@ -657,6 +603,7 @@ else if (this.extraType >= 25 && this.extraType <= 50){ // holes
 }
 
 else if (this.extraType >= 50 && this.extraType <= 75){ // scars
+
 stroke(DarkAqua_const);
    noFill()
    strokeWeight(.3);
@@ -673,6 +620,7 @@ stroke(DarkAqua_const);
 }
 
 else if (this.extraType > 75){ // arrow in head
+
 stroke(DarkAqua_const);
 fill(DirtyAqua_const);
 strokeWeight(.7)
@@ -685,75 +633,6 @@ strokeWeight(.7)
    arc(0.4,-6.75,2,2,5,0.5) // head indenttom 
 }  
 
-
-
- 
-    // // head
-    // ellipseMode(CENTER);
-    // stroke(stroke_color);
-    // fill(this.mainColour);
-    // ellipse(segment_average(positions.chin)[0], 0, 3, 4);
-    // noStroke();
-
-
-    // // mouth
-    // fill(this.detailColour);
-    // ellipse(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.25 * this.mouth_size);
-
-    // // eyebrows
-    // fill( this.eyebrowColour);
-    // stroke( this.eyebrowColour);
-    // strokeWeight(0.08);
-    // this.draw_segment(positions.left_eyebrow);
-    // this.draw_segment(positions.right_eyebrow);
-
-    // // draw the chin segment using points
-    // fill(this.chinColour);
-    // stroke(this.chinColour);
-    // this.draw_segment(positions.chin);
-
-    // fill(100, 0, 100);
-    // stroke(100, 0, 100);
-    // this.draw_segment(positions.nose_bridge);
-    // this.draw_segment(positions.nose_tip);
-
-    // strokeWeight(0.03);
-
-    // fill(this.lipColour);
-    // stroke(this.lipColour);
-    // this.draw_segment(positions.top_lip);
-    // this.draw_segment(positions.bottom_lip);
-
-    // let left_eye_pos = segment_average(positions.left_eye);
-    // let right_eye_pos = segment_average(positions.right_eye);
-
-    // // eyes
-    // noStroke();
-    // let curEyeShift = 0.04 * this.eye_shift;
-    // if(this.num_eyes == 2) {
-    //   fill(this.detailColour);
-    //   ellipse(left_eye_pos[0], left_eye_pos[1], 0.5, 0.33);
-    //   ellipse(right_eye_pos[0], right_eye_pos[1], 0.5, 0.33);
-
-    //   // fill(this.mainColour);
-    //   // ellipse(left_eye_pos[0] + curEyeShift, left_eye_pos[1], 0.18);
-    //   // ellipse(right_eye_pos[0] + curEyeShift, right_eye_pos[1], 0.18);
-    // }
-    // else {
-    //   let eyePosX = (left_eye_pos[0] + right_eye_pos[0]) / 2;
-    //   let eyePosY = (left_eye_pos[1] + right_eye_pos[1]) / 2;
-
-    //   fill(this.detailColour);
-    //   ellipse(eyePosX, eyePosY, 0.45, 0.27);
-
-    //   fill(this.mainColour);
-    //   ellipse(eyePosX - 0.1 + curEyeShift, eyePosY, 0.18);
-    // }
-   // fill(0)
-   //ellipse(0,0, 0.5,0.5) center point
-   //rect(-2,-2,4.5,4) sizing debug 
-   //console.log(this.eyeType)
-   //console.log(this.settings[0])
    angleMode(DEGREES); //// never move this 
   pop()
   

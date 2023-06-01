@@ -1,9 +1,13 @@
 function draw_one_frame(cur_frac) {
 
   noStroke()
+	let CoolerBakcground = color("fea82f")
 	let backgroundColor = color("#4C061D") // burnt red background
-	fill(backgroundColor)
+	fill(CoolerBakcground)
 	rect(0,0, width, height)
+
+	let leftCoolerReplacment = color("ff2e00")
+	let rightCoolerReplacement = color("5448c8")
 
 	let Leftcolor = color("#F6AE2D"); // mustard yellow
 	let Rightcolor = color("#F26419"); // vibrant orange
@@ -63,7 +67,7 @@ ColourNoiseMap = map(cur_frac, 0.5,1, 0,1.1) // this map is then put into the le
 
 WhiteLerp = lerpColor(toBlack, fromWhite, ColourNoiseMap)  // stroke and outline that changes from black to white
 
-fill(Leftcolor) // mustard yellow rectangles
+fill(leftCoolerReplacment) // mustard yellow rectangles //  replaced
 stroke(WhiteLerp)
 strokeWeight(StrongStroke)
 for(let i=0; i<5; i++) {
@@ -76,7 +80,7 @@ for(let i=0; i<5; i++) {
 }
 }
 
-fill(Leftcolor); // mustard yellow rectangles but placed on a diagonal offeset to appear as a checkerboard
+fill(leftCoolerReplacment); // mustard yellow rectangles but placed on a diagonal offeset to appear as a checkerboard // replaced
 for(let i=0; i<5; i++) {
     let upwards_extension = map(cur_frac, rectMapValue1, rectMapValue2, Keyframes[0], Keyframes[1]) // Rectangle Moving upwards map
 		for( let across= -0.5 ; across < width / SpaceSize2; across++){ // 0.5 for offset
@@ -88,7 +92,7 @@ for(let i=0; i<5; i++) {
 }
 }
 
-fill(Rightcolor); // vibrant orange quads.
+fill(rightCoolerReplacement); // vibrant orange quads. //  replaced
 for(let i=0; i<5; i++) {
     let upwards_extension = map(cur_frac,quadMapValue1,quadMapValue2, Keyframes[0], Keyframes[1]) // moves the quads upwards. Has to be applied on each Y value, apologies for the longest ever line of code.
 		for( let across= 0; across < width / SpaceSize2; across++){
